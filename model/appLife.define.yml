@@ -1,0 +1,4 @@
+defines:
+  - name: "appLife"
+    filePattern: "**/**.appLife.yml"
+    extend: 'AppLifeDefine'

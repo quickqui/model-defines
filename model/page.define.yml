@@ -1,0 +1,4 @@
+defines:
+  - name: page
+    filePattern: '**/**.page.yml'
+    extend: 'PageDefine'

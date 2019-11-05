@@ -1,0 +1,15 @@
+{
+  "name": "@quick-qui/model-defines",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nielinjie <nielinjie@outlook.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@quick-qui/model-core": "^1.1.0",
+    "typescript": "^3.6.4"
+  }
+}
