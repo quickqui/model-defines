@@ -13,7 +13,9 @@
   "author": "nielinjie <nielinjie@outlook.com>",
   "license": "ISC",
   "dependencies": {
-    "@quick-qui/model-core": "^1.1.0",
+    "@quick-qui/model-core": "^1.2.1",
+    "lodash": "^4.17.15",
+    "ramda": "^0.26.1",
     "typescript": "^3.7.2"
   }
 }

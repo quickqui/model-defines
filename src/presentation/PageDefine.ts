@@ -13,6 +13,7 @@ const define = {
     },
 
     validateAfterMerge(model: Model): ValidateError[] { return [] },
-    validateAfterWeave(model: Model): ValidateError[] { return [] }
+    validateAfterWeave(model: Model): ValidateError[] { return [] },
+    weavers:[]
 }
 export default define

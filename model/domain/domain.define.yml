@@ -1,0 +1,4 @@
+defines:
+  - name: domain
+    filePattern: '**/*.domainModel.yml'
+    extend: 'domain/DomainDefine'

@@ -1,0 +1,4 @@
+defines:
+  - name: function
+    filePattern: '**/*.functionModel.yml'
+    extend: 'function/FunctionDefine'
