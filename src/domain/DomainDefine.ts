@@ -2,6 +2,7 @@ import { Entity, Enum, WithDomainModel } from "./DomainModel";
 import { Model, ValidateError } from "@quick-qui/model-core";
 import * as _ from "lodash";
 import { domainWeavers } from "./DomainWeavers";
+import { DomainValidator } from "./DomainValidator";
 
 interface DomainPiece {
   entities: Entity[];
@@ -29,7 +30,7 @@ const domainDefine = {
     };
   },
   validateAfterMerge(model: Model): ValidateError[] {
-    return [];
+    return new DomainValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
     return [];

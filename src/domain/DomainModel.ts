@@ -85,5 +85,5 @@ export function existEntity(
   model: Model & WithDomainModel,
   name: string
 ): boolean {
-  return _(getEntity(model, name)).isNil();
+  return !(_(getEntity(model, name)).isNil());
 }

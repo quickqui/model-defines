@@ -1,4 +1,6 @@
 import { Annotation, Extend } from "../BaseDefine";
+import { Model } from "@quick-qui/model-core";
+import _ = require("lodash");
 
 export interface WithFunctionModel {
   functionModel: FunctionModel;
@@ -43,4 +45,19 @@ interface Link {
 interface Entry {
   menuPath: string;
   icon: string;
+}
+
+export function getFunction(
+  model: Model & WithFunctionModel,
+  name: string
+): Function | undefined {
+  return model.functionModel!.functions.find(fun => {
+    return fun.name === name;
+  });
+}
+export function existFunction(
+  model: Model & WithFunctionModel,
+  name: string
+): boolean {
+  return !_(getFunction(model, name)).isNil();
 }
