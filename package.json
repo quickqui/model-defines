@@ -14,6 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@quick-qui/model-core": "^1.2.1",
+    "@types/lodash": "^4.14.147",
+    "@types/ramda": "^0.26.34",
     "lodash": "^4.17.15",
     "ramda": "^0.26.1",
     "typescript": "^3.7.2"

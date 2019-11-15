@@ -1,6 +1,7 @@
 import * as _ from "lodash";
 import { Function, WithFunctionModel } from "./FunctionModel"
 import { ModelDefine, Model, ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
+import { functionWeavers } from "./FunctionWeavers";
 
 
 const functionDefine ={
@@ -25,6 +26,6 @@ const functionDefine ={
     validateAfterWeave(model: Model): ValidateError[] {
         return []
     },
-    weavers:[]
+    weavers:functionWeavers
 }
 export default functionDefine

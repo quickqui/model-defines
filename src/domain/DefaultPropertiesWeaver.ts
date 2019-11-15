@@ -1,7 +1,7 @@
 import { Entity, WithDomainModel } from "./DomainModel";
 import * as _ from "lodash";
 
-import { forEachEntity } from "./DomainExtends";
+import { forEachEntity } from "./DomainModel";
 
 import { ModelWeaveLog, ModelWeaver, Model } from "@quick-qui/model-core/";
 

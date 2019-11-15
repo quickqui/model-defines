@@ -1,0 +1,33 @@
+functions:
+  - name: create
+    abstract: true
+    commands:
+      - implementation: provided
+        parameters:
+          name: create
+  - name: edit
+    abstract: true
+    commands:
+      - implementation: provided
+        parameters:
+          name: edit
+  - name: delete
+    abstract: true
+    commands:
+      - implementation: provided
+        parameters:
+          name: delete
+  - name: view
+    abstract: true
+    commands:
+      - implementation: provided
+        parameters:
+          name: view
+  - name: list
+    abstract: true
+    #*
+    links: []
+    commands:
+      - implementation: provided
+        parameters:
+          name: list
