@@ -1,33 +1,23 @@
 functions:
   - name: create
     abstract: true
-    commands:
-      - implementation: provided
-        parameters:
-          name: create
+    annotations:
+      implementation: provided/create
   - name: edit
     abstract: true
-    commands:
-      - implementation: provided
-        parameters:
-          name: edit
+    annotations:
+      #NOTE provided: 由实现者带来。
+      implementation: provided/edit
   - name: delete
     abstract: true
-    commands:
-      - implementation: provided
-        parameters:
-          name: delete
+    annotations:
+      implementation: provided/delete
   - name: view
     abstract: true
-    commands:
-      - implementation: provided
-        parameters:
-          name: view
+    annotations:
+      implementation: provided/view
   - name: list
     abstract: true
-    #*
     links: []
-    commands:
-      - implementation: provided
-        parameters:
-          name: list
+    annotations:
+      implementation: provided/list

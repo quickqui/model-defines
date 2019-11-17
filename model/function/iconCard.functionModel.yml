@@ -1,0 +1,5 @@
+functions:
+  - name: iconCard
+    abstract: true
+    annotations:
+      implementation: provided/iconCard

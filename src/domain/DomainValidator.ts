@@ -7,26 +7,27 @@ export class DomainValidator implements ModelValidator {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
 
-    const m = model as Model & WithDomainModel;
-    if (m.domainModel) {
-      m.domainModel.entities.forEach(entity => {
-        if (entity.inject) {
-          try {
-            const name = getNameInsureCategory(entity.inject.ref, "entity");
-            if (!existEntity(m, name)) {
-              re.push(
-                new ValidateError(
-                  `no entity find in injection - expect=${name}`
-                )
-              );
-            }
-          } catch (e) {
-            re.push(new ValidateError(e.message));
-          }
-        }
-      });
-    }
+    injectValidate(model, re);
 
     return re;
+  }
+}
+function injectValidate(model: object, re: ValidateError[]) {
+  const m = model as Model & WithDomainModel;
+  if (m.domainModel) {
+    m.domainModel.entities.forEach(entity => {
+      if (entity.inject) {
+        try {
+          const name = getNameInsureCategory(entity.inject.ref, "entity");
+          if (!existEntity(m, name)) {
+            re.push(
+              new ValidateError(`no entity find in injection - expect=${name}`)
+            );
+          }
+        } catch (e) {
+          re.push(new ValidateError(e.message));
+        }
+      }
+    });
   }
 }

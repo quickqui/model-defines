@@ -12,18 +12,21 @@ export type Inject = { ref: Ref };
 export function getNameWithCategory(
   ref: Ref,
   insureCategory?: string
-): [string, string?] {
+): {name:string, category:string| undefined} {
+  if(ref.indexOf('/')===-1){
+    return {name:ref,category:undefined};
+  }
   const [category, name] = ref.split("/", 2);
   if (insureCategory) {
     if (category === insureCategory) {
-      return [name, category];
+      return {name, category};
     } else {
       throw new Error(
         `category not match - except=${insureCategory}, actual=${category}`
       );
     }
   } else {
-    return [name, category];
+    return {name, category};
   }
 }
 
@@ -31,5 +34,5 @@ export function getNameInsureCategory(
   ref: Ref,
   insureCategory: string
 ): string {
-  return getNameWithCategory(ref, insureCategory)[0];
+  return getNameWithCategory(ref, insureCategory).name;
 }

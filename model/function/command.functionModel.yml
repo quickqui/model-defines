@@ -1,0 +1,5 @@
+functions:
+  - name: command
+    abstract: true
+    annotations: 
+      implementation: provided/command

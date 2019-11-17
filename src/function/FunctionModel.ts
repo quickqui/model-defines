@@ -9,8 +9,11 @@ export interface WithFunctionModel {
 export interface FunctionModel {
   functions: Function[];
 }
-
+//TODO  没有想清楚，function的建模到底如何，在此之前，仅支持支持完全extend形式，crud、button、card……
+//TODO  问题： model不应该过问实现。当crud是否是一种实现方式？应该说，crud是一种function，这种function，它有着“天然”的实现。
+//      暂时以放在annotation的办法解决。
 export interface Function {
+  abstract?: boolean;
   name: string;
   resource: string;
   extend?: Extend;
@@ -23,14 +26,13 @@ export interface Function {
   entry?: Entry;
   //TODO 问题：只有list才有links？
   links: Link[];
-  annotations: Annotation[];
+  annotations: Annotation;
 }
 interface Command {
-  implementation: string;
-  parameters: object;
   prefill: object;
 }
 interface Query {
+  parameters: object;
   filter: object;
   sort: object;
 }

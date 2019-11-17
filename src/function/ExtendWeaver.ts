@@ -40,7 +40,12 @@ export class ExtendWeaver implements ModelWeaver {
 }
 function doExtend(sub: Function, base: Function): Function {
   //TODO 有些特殊字段需要特殊处理。
-  return { ...base, ...sub };
+  return {
+    ...base,
+    ...sub,
+    abstract: false,
+    annotations: { ...base.annotations, ...sub.annotations }
+  };
 }
 function getFunction(m: FunctionModel, name: string): Function | undefined {
   return m.functions.find(fun => fun.name === name);
