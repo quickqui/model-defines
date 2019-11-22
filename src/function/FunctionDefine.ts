@@ -1,4 +1,4 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { Function, WithFunctionModel } from "./FunctionModel";
 import {
   ModelDefine,
@@ -19,9 +19,10 @@ const functionDefine = {
       ...model,
       functionModel: {
         ...model.functionModel,
-        functions: _(model.functionModel ? model.functionModel.functions : [])
-          .concat(piece.functions)
-          .value()
+        functions: [
+          ...(model.functionModel?.functions ?? []),
+          ...(piece.functions ?? [])
+        ]
       }
     };
   },

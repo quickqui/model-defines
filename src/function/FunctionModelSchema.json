@@ -1,0 +1,146 @@
+{
+  "$ref": "#/definitions/FunctionModel",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Annotation": {
+      "type": "object"
+    },
+    "Extend": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "$ref": "#/definitions/Ref"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "type": "object"
+    },
+    "Function": {
+      "additionalProperties": false,
+      "properties": {
+        "abstract": {
+          "type": "boolean"
+        },
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
+        "commands": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "prefill": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "entry": {
+          "additionalProperties": false,
+          "properties": {
+            "icon": {
+              "type": "string"
+            },
+            "menuPath": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "menuPath"
+          ],
+          "type": "object"
+        },
+        "extend": {
+          "$ref": "#/definitions/Extend"
+        },
+        "links": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "args": {
+                "type": "object"
+              },
+              "label": {
+                "type": "string"
+              },
+              "page": {
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "entity",
+                  "list"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "type",
+              "page",
+              "args"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "query": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "filter": {
+                "type": "object"
+              },
+              "parameters": {
+                "type": "object"
+              },
+              "sort": {
+                "type": "object"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "resource"
+      ],
+      "type": "object"
+    },
+    "FunctionModel": {
+      "additionalProperties": false,
+      "properties": {
+        "functions": {
+          "items": {
+            "$ref": "#/definitions/Function"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "functions"
+      ],
+      "type": "object"
+    },
+    "Ref": {
+      "type": "string"
+    }
+  }
+}

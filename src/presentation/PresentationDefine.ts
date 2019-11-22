@@ -1,14 +1,21 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
+import { WithPresentationModel } from "./PageModel";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
     return [];
   },
   merge(model: Model, piece: any): Model {
-    const _model = model as any;
+    const _model = model as Model & WithPresentationModel;
     return {
       ..._model,
-      appLife: (_model.appLife ?? []).concat(piece.appLife ?? [])
+      presentationModel: {
+        ..._model.presentationModel,
+        presentations: [
+          ...(_model.presentationModel?.presentations ?? []),
+          ...(piece.presentations ?? [])
+        ]
+      }
     } as Model;
   },
 

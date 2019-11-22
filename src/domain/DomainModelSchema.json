@@ -1,0 +1,146 @@
+{
+  "$ref": "#/definitions/DomainModel",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "DomainModel": {
+      "additionalProperties": false,
+      "properties": {
+        "entities": {
+          "items": {
+            "$ref": "#/definitions/Entity"
+          },
+          "type": "array"
+        },
+        "enums": {
+          "items": {
+            "$ref": "#/definitions/Enum"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "entities",
+        "enums"
+      ],
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "directives": {
+          "type": "object"
+        },
+        "inject": {
+          "$ref": "#/definitions/Inject"
+        },
+        "name": {
+          "type": "string"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/Property"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "properties"
+      ],
+      "type": "object"
+    },
+    "Enum": {
+      "additionalProperties": false,
+      "properties": {
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "values"
+      ],
+      "type": "object"
+    },
+    "Inject": {
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "$ref": "#/definitions/Ref"
+        }
+      },
+      "required": [
+        "ref"
+      ],
+      "type": "object"
+    },
+    "List": {
+      "additionalProperties": false,
+      "properties": {
+        "itemType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "itemType"
+      ],
+      "type": "object"
+    },
+    "Property": {
+      "additionalProperties": false,
+      "properties": {
+        "constraints": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "default": {
+        },
+        "name": {
+          "type": "string"
+        },
+        "relation": {
+          "additionalProperties": false,
+          "properties": {
+            "n": {
+              "enum": [
+                "one",
+                "many"
+              ],
+              "type": "string"
+            },
+            "to": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "n",
+            "to"
+          ],
+          "type": "object"
+        },
+        "type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/List"
+            }
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "type": "object"
+    },
+    "Ref": {
+      "type": "string"
+    }
+  }
+}

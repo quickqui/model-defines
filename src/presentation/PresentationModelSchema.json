@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Presentation": {
+      "additionalProperties": false,
+      "properties": {
+        "brief": {
+          "type": "string"
+        },
+        "context": {
+          "type": "string"
+        },
+        "display": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "resource": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "context",
+        "resource",
+        "display",
+        "brief"
+      ],
+      "type": "object"
+    },
+    "PresentationModel": {
+      "additionalProperties": false,
+      "properties": {
+        "presentations": {
+          "items": {
+            "$ref": "#/definitions/Presentation"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "presentations"
+      ],
+      "type": "object"
+    }
+  }
+}

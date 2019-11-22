@@ -1,7 +1,7 @@
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { WithDomainModel, DomainModel, Entity } from "./DomainModel";
 import * as R from "ramda";
-import * as _ from "lodash";
+import  _ from "lodash";
 import { getNameInsureCategory } from '../BaseDefine';
 
 export class InjectedWeaver implements ModelWeaver {

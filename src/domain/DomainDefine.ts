@@ -1,6 +1,6 @@
 import { Entity, Enum, WithDomainModel } from "./DomainModel";
 import { Model, ValidateError } from "@quick-qui/model-core";
-import * as _ from "lodash";
+import _ from "lodash";
 import { domainWeavers } from "./DomainWeavers";
 import { DomainValidator } from "./DomainValidator";
 
@@ -18,14 +18,11 @@ const domainDefine = {
       ...model,
       domainModel: {
         ...model.domainModel,
-        entities: _(model.domainModel ? model.domainModel.entities : [])
-          .concat(piece.entities)
-          .compact()
-          .value(),
-        enums: _(model.domainModel ? model.domainModel.enums : [])
-          .concat(piece.enums)
-          .compact()
-          .value()
+        entities: [
+          ...(model.domainModel?.entities ?? []),
+          ...(piece.entities ?? [])
+        ],
+        enums: [...(model.domainModel?.enums ?? []), ...(piece.enums ?? [])]
       }
     };
   },

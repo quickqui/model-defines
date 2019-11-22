@@ -4,13 +4,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true,
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "noImplicitAny": false,
     "declaration": true,
     "moduleResolution": "node",
-    "module": "CommonJS"
-  }
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "esModuleInterop": true 
+  },
 }

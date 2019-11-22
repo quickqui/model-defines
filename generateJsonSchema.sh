@@ -1,0 +1,4 @@
+./node_modules/.bin/ts-json-schema-generator -p ./src/domain/DomainModel.ts -f 'tsconfig.json' -t DomainModel > ./src/domain/DomainModelSchema.json
+./node_modules/.bin/ts-json-schema-generator -p ./src/function/FunctionModel.ts -f 'tsconfig.json' -t FunctionModel> ./src/function/FunctionModelSchema.json
+# ./node_modules/.bin/ts-json-schema-generator -p ./src/presentation/PageModel.ts -f 'tsconfig.json' -t PageModel> ./src/presentation/PageModelSchema.json
+# ./node_modules/.bin/ts-json-schema-generator -p ./src/presentation/PresentationModel.ts -f 'tsconfig.json' -t PresentationModel> ./src/presentation/PresentationModelSchema.json

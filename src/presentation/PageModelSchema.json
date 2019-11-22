@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Annotation": {
+      "type": "object"
+    },
+    "Page": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
+        "gride": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "menuPath": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "places": {
+          "items": {
+            "$ref": "#/definitions/Place"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "menuPath",
+        "icon",
+        "gride",
+        "places"
+      ],
+      "type": "object"
+    },
+    "PageModel": {
+      "additionalProperties": false,
+      "properties": {
+        "pages": {
+          "items": {
+            "$ref": "#/definitions/Page"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "pages"
+      ],
+      "type": "object"
+    },
+    "Place": {
+      "additionalProperties": false,
+      "properties": {
+        "function": {
+          "type": "string"
+        },
+        "presentation": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "function",
+        "presentation"
+      ],
+      "type": "object"
+    }
+  }
+}

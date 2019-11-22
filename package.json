@@ -16,8 +16,12 @@
     "@quick-qui/model-core": "^1.2.1",
     "@types/lodash": "^4.14.148",
     "@types/ramda": "^0.26.34",
+    "ajv": "^6.10.2",
     "lodash": "^4.17.15",
     "ramda": "^0.26.1",
     "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "ts-json-schema-generator": "^0.56.0"
   }
 }
