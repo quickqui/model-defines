@@ -24,11 +24,11 @@ function injectValidate(model: object, re: ValidateError[]) {
           const name = getNameInsureCategory(entity.inject.ref, "entity");
           if (!existEntity(m, name)) {
             re.push(
-              new ValidateError(`no entity find in injection - expect=${name}`)
+              new ValidateError(`entity/${entity.name}`,`no entity find in injection - expect=${name}`)
             );
           }
         } catch (e) {
-          re.push(new ValidateError(e.message));
+          re.push(new ValidateError(`entity/${entity.name}`,e.message));
         }
       }
     });

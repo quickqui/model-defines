@@ -1,6 +1,6 @@
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { WithFunctionModel, FunctionModel, Function } from "./FunctionModel";
-import { getNameInsureCategory, appendWeavingLog } from "../BaseDefine";
+import { getNameInsureCategory } from "../BaseDefine";
 import _ = require("lodash");
 
 export class ExtendWeaver implements ModelWeaver {
@@ -17,16 +17,12 @@ export class ExtendWeaver implements ModelWeaver {
         const extendTarget = getFunction(m.functionModel, extendTargetName);
         if (!extendTarget) {
           logs.push(
-            new ModelWeaveLog(
+            //TODO 这里应该是validate log？
+            new ModelWeaveLog(`function/${fun.name}`,
               `no extend function find, expected - ${extendTargetName}`
             )
           );
-          appendWeavingLog(
-            fun,
-            new ModelWeaveLog(
-              `no extend function find, expected - ${extendTargetName}`
-            )
-          );
+          
         } else {
           const index = _(m.functionModel.functions).findIndex(
             (f: Function) => fun.name === f.name
@@ -34,14 +30,11 @@ export class ExtendWeaver implements ModelWeaver {
           const newFunction = doExtend(fun, extendTarget);
           m.functionModel.functions[index] = newFunction;
           logs.push(
-            new ModelWeaveLog(
+            new ModelWeaveLog(`function/${fun.name}`,
               `extend function, base - ${extendTargetName}, sub - ${fun.name}`
             )
           );
-          appendWeavingLog(
-            fun,
-            new ModelWeaveLog(`function extended, base -${extendTargetName}`)
-          );
+          
         }
       }
     });

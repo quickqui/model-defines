@@ -1,9 +1,8 @@
 import * as _ from "lodash";
-import { ModelWeaveLog } from "@quick-qui/model-core";
-
+import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 
 export interface WithAnnotations {
-  annotations?: Annotation
+  annotations?: Annotation;
 }
 export type Annotation = object;
 
@@ -56,9 +55,5 @@ export function appendAnnotation(obj: any, key: string, value: any) {
     obj.annotations = {};
     appendAnnotation(obj, key, value);
   }
-}
-
-export function appendWeavingLog(obj: any, log: ModelWeaveLog) {
-  appendAnnotation(obj, "weaveLogs", log);
 }
 

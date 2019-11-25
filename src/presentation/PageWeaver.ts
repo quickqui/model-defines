@@ -2,7 +2,6 @@ import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { WithFunctionModel } from "../function/FunctionModel";
 import * as _ from "lodash";
 import { Page } from "./PageModel";
-import { appendWeavingLog } from "../BaseDefine";
 
 export class OneFunctionPagesWeaver implements ModelWeaver {
   name = "oneFunctionPage";
@@ -32,17 +31,9 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
                 presentation: `normal`
               }
             ],
-            annotations: {
-              weaveLogs: [
-                new ModelWeaveLog(`generated for function - ${f.name}`)
-              ]
-            }
+           
           };
-          re.push(new ModelWeaveLog(`page generated for function - ${f.name}`));
-          appendWeavingLog(
-            f,
-            new ModelWeaveLog(`page generated - ${newPage.name}`)
-          );
+          re.push(new ModelWeaveLog(`function/${f.name}`,`page generated for function - ${f.name}`));
           m.pages = [...(m.pages || []), newPage];
         }
       });

@@ -22,7 +22,7 @@ function defaultProperties(entity: Entity): [Entity, ModelWeaveLog] {
                 { name: 'updatedAt', type: 'DateTime', constraints: ['required'] }
             ]
         ),
-    }), new ModelWeaveLog(
+    }), new ModelWeaveLog(`entity/${entity.name}`,
         `Added default properties for entity/${entity.name}`
     )]
 }

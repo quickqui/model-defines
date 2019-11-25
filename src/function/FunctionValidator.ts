@@ -24,11 +24,11 @@ function extendValidate(model: object, re: ValidateError[]) {
           const name = getNameInsureCategory(fun.extend.ref, "function");
           if (!existFunction(m, name)) {
             re.push(
-              new ValidateError(`no function find in extend - expect=${name}`)
+              new ValidateError(`function/${fun.name}`,`no function find in extend - expect=${name}`)
             );
           }
         } catch (e) {
-          re.push(new ValidateError(e.message));
+          re.push(new ValidateError(`function/${fun.name}`,e.message));
         }
       }
     });

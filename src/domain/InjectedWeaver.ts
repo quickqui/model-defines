@@ -59,7 +59,7 @@ function push(
           ),
           enums: model.enums
         },
-        new ModelWeaveLog(
+        new ModelWeaveLog(`entity/${target.name}`,
           `Injected - form entity/${entity.name} to entity/${target.name}`
         )
       ];

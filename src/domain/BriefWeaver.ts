@@ -34,7 +34,7 @@ function defaultBrief(entity: Entity): [Entity, ModelWeaveLog?] {
             brief: guessedName
           }
         },
-        new ModelWeaveLog(
+        new ModelWeaveLog(`entity/${entity.name}`,
           `brief guessed for entity/${entity.name}- ${guessedName}`
         )
       ];
