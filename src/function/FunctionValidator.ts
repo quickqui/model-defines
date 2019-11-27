@@ -1,47 +1,54 @@
 import { ModelValidator, Model, ValidateError } from "@quick-qui/model-core";
-import { WithFunctionModel, existFunction, FunctionModel } from "./FunctionModel";
+import {
+  existFunction,
+  FunctionModel,
+  withFunctionModel
+} from "./FunctionModel";
+import "../Util";
 import { getNameInsureCategory } from "../BaseDefine";
-import Ajv from "ajv";
+import enjoi from "enjoi";
+import * as joi from "@hapi/joi";
 import schema from "./FunctionModelSchema.json";
 export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
     //TODO 注意：resource跟domain/entity不完全相同。
-    extendValidate(model, re);
-    const m = model as Model & WithFunctionModel;
-    bySchema(m.functionModel)
-    return re;
+    return [
+      ...extendValidate(model),
+      ...withFunctionModel(model)?.functionModel?.p(bySchema) ?? []
+    ];
   }
 }
 
-function extendValidate(model: object, re: ValidateError[]) {
-  const m = model as Model & WithFunctionModel;
-  if (m.functionModel) {
-    m.functionModel.functions.forEach(fun => {
-      if (fun.extend) {
-        try {
-          const name = getNameInsureCategory(fun.extend.ref, "function");
-          if (!existFunction(m, name)) {
-            re.push(
-              new ValidateError(`function/${fun.name}`,`no function find in extend - expect=${name}`)
-            );
-          }
-        } catch (e) {
-          re.push(new ValidateError(`function/${fun.name}`,e.message));
+function extendValidate(model: object): ValidateError[] {
+  const re: ValidateError[] = [];
+  withFunctionModel(model)?.functionModel.functions.forEach(fun => {
+    if (fun.extend) {
+      try {
+        const name = getNameInsureCategory(fun.extend.ref, "function");
+        if (!existFunction(model, name)) {
+          re.push(
+            new ValidateError(
+              `function/${fun.name}`,
+              `no function find in extend - expect=${name}`
+            )
+          );
         }
+      } catch (e) {
+        re.push(new ValidateError(`function/${fun.name}`, e.message));
       }
-    });
-  }
+    }
+  });
+  return re;
 }
 
-
-function bySchema(model: FunctionModel): boolean {
-  const ajv = new Ajv({ allErrors: true });
-  const valid = ajv.validate(schema, model);
-  console.log(valid);
-  if (!valid) {
-    console.log(ajv.errors);
-  }
-  return true;
+function bySchema(model: FunctionModel): ValidateError[] {
+  const s = enjoi.schema(schema);
+  const { error, value } = joi.validate(model, s, { abortEarly: false });
+  return (
+    error?.details.map(detail => {
+      return new ValidateError(`${detail.context}`, detail.message);
+    }) ?? []
+  );
 }

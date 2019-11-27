@@ -1,16 +1,14 @@
 import _ from "lodash";
-import { Function, WithFunctionModel } from "./FunctionModel";
+import { WithFunctionModel } from "./FunctionModel";
 import {
-  ModelDefine,
   Model,
-  ModelWeaveLog,
   ValidateError
 } from "@quick-qui/model-core";
 import { functionWeavers } from "./FunctionWeavers";
 import { FunctionValidator } from "./FunctionValidator";
 
 const functionDefine = {
-  validatePiece(piece: any): ValidateError[] {
+  validatePiece(): ValidateError[] {
     return [];
   },
 
@@ -29,7 +27,7 @@ const functionDefine = {
   validateAfterMerge(model: Model): ValidateError[] {
     return new FunctionValidator().validate(model);
   },
-  validateAfterWeave(model: Model): ValidateError[] {
+  validateAfterWeave(): ValidateError[] {
     return [];
   },
   weavers: functionWeavers

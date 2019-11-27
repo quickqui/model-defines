@@ -6,6 +6,13 @@ export interface WithDomainModel {
   domainModel: DomainModel;
 }
 
+export function withDomainModel(model: Model): WithDomainModel | undefined {
+         if ((model as any).domainModel) {
+           return model as WithDomainModel;
+         } else {
+           return undefined;
+         }
+       }
 export interface DomainModel {
   entities: Entity[];
   enums: Enum[];

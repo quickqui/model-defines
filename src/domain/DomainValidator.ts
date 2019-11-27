@@ -1,21 +1,27 @@
 import { ModelValidator, ValidateError, Model } from "@quick-qui/model-core";
-import { WithDomainModel, existEntity, DomainModel } from "./DomainModel";
+import {
+  WithDomainModel,
+  existEntity,
+  DomainModel,
+  withDomainModel
+} from "./DomainModel";
 import { getNameInsureCategory } from "../BaseDefine";
-import Ajv from "ajv";
+import enjoi from "enjoi";
+import * as joi from "@hapi/joi";
 import schema from "./DomainModelSchema.json";
 
 export class DomainValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    let re: ValidateError[] = [];
     //TODO 没有完全实现
 
-    injectValidate(model, re);
-    const m = model as Model & WithDomainModel
-    bySchema(m.domainModel)
-    return re;
+    return [
+      ...injectValidate(model),
+      ...withDomainModel(model)?.domainModel?.p(bySchema) ?? []
+    ];
   }
 }
-function injectValidate(model: object, re: ValidateError[]) {
+function injectValidate(model: object): ValidateError[] {
+  const re: ValidateError[] = [];
   const m = model as Model & WithDomainModel;
   if (m.domainModel) {
     m.domainModel.entities.forEach(entity => {
@@ -24,22 +30,27 @@ function injectValidate(model: object, re: ValidateError[]) {
           const name = getNameInsureCategory(entity.inject.ref, "entity");
           if (!existEntity(m, name)) {
             re.push(
-              new ValidateError(`entity/${entity.name}`,`no entity find in injection - expect=${name}`)
+              new ValidateError(
+                `entity/${entity.name}`,
+                `no entity find in injection - expect=${name}`
+              )
             );
           }
         } catch (e) {
-          re.push(new ValidateError(`entity/${entity.name}`,e.message));
+          re.push(new ValidateError(`entity/${entity.name}`, e.message));
         }
       }
     });
   }
+  return re;
 }
 
-function bySchema(model: DomainModel): boolean {
-  const ajv = new Ajv();
-  const valid = ajv.validate(schema, model);
-  if (!valid) {
-    console.log(ajv.errors);
-  }
-  return true;
+function bySchema(model: DomainModel): ValidateError[] {
+  const s = enjoi.schema(schema);
+  const { error, value } = joi.validate(model, s, { abortEarly: false });
+  return (
+    error?.details.map(detail => {
+      return new ValidateError(`${detail.context}`, detail.message);
+    }) ?? []
+  );
 }

@@ -6,6 +6,28 @@ export interface WithFunctionModel {
   functionModel: FunctionModel;
 }
 
+export function withFunctionModel(model: Model): WithFunctionModel | undefined {
+  if ((model as any).functionModel) {
+    return model as WithFunctionModel;
+  } else {
+    return undefined;
+  }
+}
+
+//TODO extension for model 
+// declare module "@quick-qui/model-core"{
+//   export interface Model{
+//      wFunctionModel(this:Model):WithFunctionModel| undefined
+//   }
+// }
+
+// Model.prototype.wFunctionModel = function(this:Model){
+//   return withFunctionModel(this)
+// }
+
+
+
+
 export interface FunctionModel {
   functions: Function[];
 }
@@ -49,15 +71,15 @@ interface Entry {
 }
 
 export function getFunction(
-  model: Model & WithFunctionModel,
+  model: Model ,
   name: string
 ): Function | undefined {
-  return model.functionModel!.functions.find(fun => {
+  return withFunctionModel(model)?.functionModel.functions.find(fun => {
     return fun.name === name;
   });
 }
 export function existFunction(
-  model: Model & WithFunctionModel,
+  model: Model ,
   name: string
 ): boolean {
   return !_(getFunction(model, name)).isNil();
