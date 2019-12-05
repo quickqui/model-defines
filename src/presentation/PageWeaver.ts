@@ -30,10 +30,14 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
                 function: f.name,
                 presentation: `normal`
               }
-            ],
-           
+            ]
           };
-          re.push(new ModelWeaveLog(`function/${f.name}`,`page generated for function - ${f.name}`));
+          re.push(
+            new ModelWeaveLog(
+              `functions/${f.name}`,
+              `page generated for function - ${f.name}`
+            )
+          );
           m.pages = [...(m.pages || []), newPage];
         }
       });

@@ -13,7 +13,7 @@ export class DeleteAbstractFunctionWeaver implements ModelWeaver {
           return !(fun.abstract ?? false)
       })
       return [m,abstracts.map(fun=>{
-          return new ModelWeaveLog(`function/${fun.name}`,`abstract function deleted - ${fun.name}`)
+          return new ModelWeaveLog(`functions/${fun.name}`,`abstract function deleted - ${fun.name}`)
       })]
   }
 }

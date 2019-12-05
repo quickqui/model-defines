@@ -1,11 +1,10 @@
 import * as _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
+import { Annotation } from "./Annotation";
 
-export interface WithAnnotations {
-  annotations?: Annotation;
-}
-export type Annotation = object;
 
+
+export type StringKeyObject = { [key: string]: any };
 // ref := category/id
 export type Ref = string;
 
@@ -43,17 +42,4 @@ export function getNameInsureCategory(
   return getNameWithCategory(ref, insureCategory).name;
 }
 
-export function appendAnnotation(obj: any, key: string, value: any) {
-  if (!_.isNil(obj.annotations)) {
-    const re = obj.annotations[key];
-    if (_.isNil(re)) {
-      obj.annotations[key] = value;
-    } else {
-      obj.annotations[key] = [obj.annotations[key]].concat(value);
-    }
-  } else {
-    obj.annotations = {};
-    appendAnnotation(obj, key, value);
-  }
-}
 

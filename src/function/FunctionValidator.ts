@@ -8,7 +8,8 @@ import "../Util";
 import { getNameInsureCategory } from "../BaseDefine";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
-import schema from "./FunctionModelSchema.json";
+import schema from "./FunctionSchema.json";
+import _ from "lodash";
 export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
@@ -16,12 +17,12 @@ export class FunctionValidator implements ModelValidator {
     //TODO 注意：resource跟domain/entity不完全相同。
     return [
       ...extendValidate(model),
-      ...withFunctionModel(model)?.functionModel?.p(bySchema) ?? []
+      ...(withFunctionModel(model)?.functionModel?.p(bySchema) ?? [])
     ];
   }
 }
 
-function extendValidate(model: object): ValidateError[] {
+function extendValidate(model: Model): ValidateError[] {
   const re: ValidateError[] = [];
   withFunctionModel(model)?.functionModel.functions.forEach(fun => {
     if (fun.extend) {
@@ -30,7 +31,7 @@ function extendValidate(model: object): ValidateError[] {
         if (!existFunction(model, name)) {
           re.push(
             new ValidateError(
-              `function/${fun.name}`,
+              `functions/${fun.name}`,
               `no function find in extend - expect=${name}`
             )
           );
@@ -42,13 +43,23 @@ function extendValidate(model: object): ValidateError[] {
   });
   return re;
 }
+const s = enjoi.schema(schema);
 
 function bySchema(model: FunctionModel): ValidateError[] {
-  const s = enjoi.schema(schema);
-  const { error, value } = joi.validate(model, s, { abortEarly: false });
-  return (
-    error?.details.map(detail => {
-      return new ValidateError(`${detail.context}`, detail.message);
-    }) ?? []
-  );
+  return model.functions
+    .filter(fun => !(fun.abstract === true))
+    .map(fun => {
+      const { error, value } = joi.validate(fun, s, { abortEarly: false });
+
+      return (
+        error?.details.map(
+          detail =>
+            new ValidateError(
+              `functions/${fun.name ?? "_noName"}`,
+              detail.message
+            )
+        ) ?? []
+      );
+    })
+    .flat();
 }

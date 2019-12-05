@@ -8,7 +8,7 @@ import {
 import { getNameInsureCategory } from "../BaseDefine";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
-import schema from "./DomainModelSchema.json";
+import schema from "./EntitySchema.json";
 
 export class DomainValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
@@ -16,11 +16,11 @@ export class DomainValidator implements ModelValidator {
 
     return [
       ...injectValidate(model),
-      ...withDomainModel(model)?.domainModel?.p(bySchema) ?? []
+      ...(withDomainModel(model)?.domainModel?.p(bySchema) ?? [])
     ];
   }
 }
-function injectValidate(model: object): ValidateError[] {
+function injectValidate(model: Model): ValidateError[] {
   const re: ValidateError[] = [];
   const m = model as Model & WithDomainModel;
   if (m.domainModel) {
@@ -31,26 +31,34 @@ function injectValidate(model: object): ValidateError[] {
           if (!existEntity(m, name)) {
             re.push(
               new ValidateError(
-                `entity/${entity.name}`,
+                `entities/${entity.name}`,
                 `no entity find in injection - expect=${name}`
               )
             );
           }
         } catch (e) {
-          re.push(new ValidateError(`entity/${entity.name}`, e.message));
+          re.push(new ValidateError(`entities/${entity.name}`, e.message));
         }
       }
     });
   }
   return re;
 }
+  const s = enjoi.schema(schema);
 
 function bySchema(model: DomainModel): ValidateError[] {
-  const s = enjoi.schema(schema);
-  const { error, value } = joi.validate(model, s, { abortEarly: false });
-  return (
-    error?.details.map(detail => {
-      return new ValidateError(`${detail.context}`, detail.message);
-    }) ?? []
-  );
+  return model.entities
+    .map(entity => {
+      const { error, value } = joi.validate(entity, s, { abortEarly: false });
+
+      return (
+        error?.details.map(detail => {
+          return new ValidateError(
+            `entities/${entity.name ?? "_noName"}`,
+            detail.message
+          );
+        }) ?? []
+      );
+    })
+    .flat();
 }

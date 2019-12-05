@@ -1,0 +1,4 @@
+defines:
+  - name: implementation
+    filePattern: '**/*.implementation.yml'
+    extend: 'implementation/ImplementationDefine'

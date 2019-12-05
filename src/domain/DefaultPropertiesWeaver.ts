@@ -14,15 +14,17 @@ export class DefaultPropertiesWeaver implements ModelWeaver {
 }
 
 function defaultProperties(entity: Entity): [Entity, ModelWeaveLog] {
-    return [_.assign(entity, {
-        properties: entity.properties.concat(
-            [
-                { name: 'id', type: 'ID', constraints: ['required'] },
-                { name: 'createdAt', type: 'DateTime', constraints: ['required'] },
-                { name: 'updatedAt', type: 'DateTime', constraints: ['required'] }
-            ]
-        ),
-    }), new ModelWeaveLog(`entity/${entity.name}`,
-        `Added default properties for entity/${entity.name}`
-    )]
+    return [
+      _.assign(entity, {
+        properties: entity.properties.concat([
+          { name: "id", type: "ID", constraints: ["required"] },
+          { name: "createdAt", type: "DateTime", constraints: ["required"] },
+          { name: "updatedAt", type: "DateTime", constraints: ["required"] }
+        ])
+      }),
+      new ModelWeaveLog(
+        `entities/${entity.name}`,
+        `Added default properties for entities/${entity.name}`
+      )
+    ];
 }

@@ -1,5 +1,5 @@
 {
-  "$ref": "#/definitions/FunctionModel",
+  "$ref": "#/definitions/Function",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "Annotation": {
@@ -121,21 +121,6 @@
       "required": [
         "name",
         "resource"
-      ],
-      "type": "object"
-    },
-    "FunctionModel": {
-      "additionalProperties": false,
-      "properties": {
-        "functions": {
-          "items": {
-            "$ref": "#/definitions/Function"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "functions"
       ],
       "type": "object"
     },

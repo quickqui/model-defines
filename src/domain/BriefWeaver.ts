@@ -2,6 +2,7 @@ import { Entity, WithDomainModel } from "./DomainModel";
 import * as _ from "lodash";
 import { forEachEntity } from "./DomainModel";
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
+import { appendAnnotation } from "../Annotation";
 
 export class BriefWeaver implements ModelWeaver {
   name = "brief";
@@ -21,21 +22,15 @@ function defaultBrief(entity: Entity): [Entity, ModelWeaveLog?] {
     "text",
     "content"
   ];
-  if (!entity?.directives?.["brief"]) {
+  if (!entity?.annotations?.["brief"]) {
     const guessedName = guessingName.find(gn => {
       return !!entity.properties.find(p => p.name == gn);
     });
     if (guessedName) {
       return [
-        {
-          ...entity,
-          directives: {
-            ...entity.directives,
-            brief: guessedName
-          }
-        },
-        new ModelWeaveLog(`entity/${entity.name}`,
-          `brief guessed for entity/${entity.name}- ${guessedName}`
+        appendAnnotation(entity,'brief',guessedName),
+        new ModelWeaveLog(`entities/${entity.name}`,
+          `brief guessed for entities/${entity.name}- ${guessedName}`
         )
       ];
     } else return [entity, undefined];

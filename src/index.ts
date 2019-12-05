@@ -1,12 +1,13 @@
-
-
+export * from "./domain";
+export * from "./function";
+export * from "./implementation";
+export * from "./presentation";
+export { Annotation, WithAnnotations, appendAnnotation } from "./Annotation";
 export {
-    Annotation,
-    Ref,
-    Extend,
-    Inject,
-    getNameWithCategory,
-    getNameInsureCategory,
+  StringKeyObject,
+  Ref,
+  Extend,
+  Inject,
+  getNameWithCategory,
+  getNameInsureCategory
 } from "./BaseDefine";
-
-

@@ -1,4 +1,4 @@
-import { WithAnnotations } from "../BaseDefine";
+import { WithAnnotations } from "../Annotation";
 import { PresentationModel } from "./PresentationModel";
 
 export interface WithPresentationModel{

@@ -1,4 +1,5 @@
-import { Annotation, Extend, WithAnnotations } from "../BaseDefine";
+import { Extend, StringKeyObject } from "../BaseDefine";
+import { Annotation, WithAnnotations } from "../Annotation";
 import { Model } from "@quick-qui/model-core";
 import _ = require("lodash");
 
@@ -50,19 +51,19 @@ export interface Function extends WithAnnotations {
   links?: Link[];
 }
 interface Command {
-  prefill?: object;
+  prefill?: StringKeyObject;
 }
 interface Query {
-  parameters?: object;
-  filter?: object;
-  sort?: object;
+  parameters?: StringKeyObject;
+  filter?: StringKeyObject;
+  sort?: StringKeyObject;
 }
 
 interface Link {
   label: string;
   type: "entity" | "list";
   page: string;
-  args: object;
+  args: StringKeyObject;
 }
 
 interface Entry {

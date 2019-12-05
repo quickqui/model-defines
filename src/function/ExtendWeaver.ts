@@ -18,7 +18,8 @@ export class ExtendWeaver implements ModelWeaver {
         if (!extendTarget) {
           logs.push(
             //TODO 这里应该是validate log？
-            new ModelWeaveLog(`function/${fun.name}`,
+            new ModelWeaveLog(
+              `functions/${fun.name}`,
               `no extend function find, expected - ${extendTargetName}`
             )
           );
@@ -30,7 +31,8 @@ export class ExtendWeaver implements ModelWeaver {
           const newFunction = doExtend(fun, extendTarget);
           m.functionModel.functions[index] = newFunction;
           logs.push(
-            new ModelWeaveLog(`function/${fun.name}`,
+            new ModelWeaveLog(
+              `functions/${fun.name}`,
               `extend function, base - ${extendTargetName}, sub - ${fun.name}`
             )
           );

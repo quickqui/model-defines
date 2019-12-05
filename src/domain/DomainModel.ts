@@ -1,6 +1,7 @@
 import { ModelWeaveLog, Model } from "@quick-qui/model-core";
+import {  WithAnnotations } from "../Annotation";
+import _ =require("lodash");
 import { Inject } from "../BaseDefine";
-import _ = require("lodash");
 
 export interface WithDomainModel {
   domainModel: DomainModel;
@@ -18,14 +19,12 @@ export interface DomainModel {
   enums: Enum[];
 }
 
-export interface Entity {
+export interface Entity extends WithAnnotations{
   name: string;
   properties: Property[];
   //inject 是推模式，当前定义注入到之前模式，当前定义最终不生效。
   //TODO 考虑是否要拉模式
   inject?: Inject;
-  //TODO 随时考虑这个东西在这里的合理性。目前的用途是brief字段，严格来讲这个东西不应该是entity的属性。
-  directives?: object;
 }
 
 export interface Property {
