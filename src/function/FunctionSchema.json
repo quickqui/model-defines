@@ -3,7 +3,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "Annotation": {
-      "type": "object"
+      "$ref": "#/definitions/StringKeyObject"
     },
     "Extend": {
       "additionalProperties": false,
@@ -26,17 +26,17 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
-        "commands": {
-          "items": {
-            "additionalProperties": false,
-            "properties": {
-              "prefill": {
-                "type": "object"
-              }
+        "command": {
+          "additionalProperties": false,
+          "properties": {
+            "prefill": {
+              "$ref": "#/definitions/StringKeyObject"
             },
-            "type": "object"
+            "redirect": {
+              "type": "string"
+            }
           },
-          "type": "array"
+          "type": "object"
         },
         "entry": {
           "additionalProperties": false,
@@ -61,7 +61,7 @@
             "additionalProperties": false,
             "properties": {
               "args": {
-                "type": "object"
+                "$ref": "#/definitions/StringKeyObject"
               },
               "label": {
                 "type": "string"
@@ -80,8 +80,7 @@
             "required": [
               "label",
               "type",
-              "page",
-              "args"
+              "page"
             ],
             "type": "object"
           },
@@ -90,18 +89,21 @@
         "name": {
           "type": "string"
         },
+        "parameters": {
+          "$ref": "#/definitions/StringKeyObject"
+        },
         "query": {
           "items": {
             "additionalProperties": false,
             "properties": {
               "filter": {
-                "type": "object"
+                "$ref": "#/definitions/StringKeyObject"
               },
               "parameters": {
-                "type": "object"
+                "$ref": "#/definitions/StringKeyObject"
               },
               "sort": {
-                "type": "object"
+                "$ref": "#/definitions/StringKeyObject"
               }
             },
             "type": "object"
@@ -110,12 +112,6 @@
         },
         "resource": {
           "type": "string"
-        },
-        "roles": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "required": [
@@ -126,6 +122,9 @@
     },
     "Ref": {
       "type": "string"
+    },
+    "StringKeyObject": {
+      "type": "object"
     }
   }
 }

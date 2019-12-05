@@ -40,18 +40,19 @@ export interface Function extends WithAnnotations {
   name: string;
   resource: string;
   extend?: Extend;
-  //TODO 问题，如果有多个command，prefill应该听谁的？
-  commands?: Command[];
+  //TODO 问题，是否有必要多个command？如果有多个command，prefill应该听谁的？
+  command?: Command;
   query?: Query[];
-  //TODO 移到annotation中。
-  roles?: string[];
   //TODO 移到annotation中。
   entry?: Entry;
   //TODO 问题：只有list才有links？
   links?: Link[];
+  parameters?: StringKeyObject
 }
 interface Command {
   prefill?: StringKeyObject;
+    //TODO 问题，redirect是function的行为么？还是presentation的？
+  redirect?: string;
 }
 interface Query {
   parameters?: StringKeyObject;
@@ -63,7 +64,7 @@ interface Link {
   label: string;
   type: "entity" | "list";
   page: string;
-  args: StringKeyObject;
+  args?: StringKeyObject;
 }
 
 interface Entry {

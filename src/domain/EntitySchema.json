@@ -2,11 +2,14 @@
   "$ref": "#/definitions/Entity",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Annotation": {
+      "$ref": "#/definitions/StringKeyObject"
+    },
     "Entity": {
       "additionalProperties": false,
       "properties": {
-        "directives": {
-          "type": "object"
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
         },
         "inject": {
           "$ref": "#/definitions/Inject"
@@ -97,13 +100,15 @@
         }
       },
       "required": [
-        "name",
-        "type"
+        "name"
       ],
       "type": "object"
     },
     "Ref": {
       "type": "string"
+    },
+    "StringKeyObject": {
+      "type": "object"
     }
   }
 }

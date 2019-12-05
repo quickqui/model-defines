@@ -29,7 +29,8 @@ export interface Entity extends WithAnnotations{
 
 export interface Property {
   name: string;
-  type: string | List;
+  //TODO 如果没有type就要有relation，validate需要体现这个限制
+  type?: string | List;
   constraints?: Constraint[];
   default?: any;
   relation?: Relation;
