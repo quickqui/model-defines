@@ -15,16 +15,7 @@ export function withFunctionModel(model: Model): WithFunctionModel | undefined {
   }
 }
 
-//TODO extension for model 
-// declare module "@quick-qui/model-core"{
-//   export interface Model{
-//      wFunctionModel(this:Model):WithFunctionModel| undefined
-//   }
-// }
 
-// Model.prototype.wFunctionModel = function(this:Model){
-//   return withFunctionModel(this)
-// }
 
 
 
