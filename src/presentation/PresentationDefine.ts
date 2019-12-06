@@ -1,6 +1,6 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { WithPresentationModel } from "./PageModel";
-import { deepMerge } from "../Util";
+import { deepMerge } from "../Merge";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {

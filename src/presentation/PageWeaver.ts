@@ -2,7 +2,7 @@ import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { WithFunctionModel } from "../function/FunctionModel";
 import * as _ from "lodash";
 import { Page, WithPresentationModel } from "./PageModel";
-import { deepMerge } from "../Util";
+import { deepMerge } from "../Merge";
 
 export class OneFunctionPagesWeaver implements ModelWeaver {
   name = "oneFunctionPage";

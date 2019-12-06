@@ -1,6 +1,6 @@
 import { StringKeyObject } from "./BaseDefine";
 import * as _ from "lodash";
-import { deepMerge } from "./Util";
+import { deepMerge } from "./Merge";
 export type Annotation = StringKeyObject;
 export interface WithAnnotations {
   annotations?: Annotation;

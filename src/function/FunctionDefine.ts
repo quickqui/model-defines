@@ -6,7 +6,7 @@ import {
 } from "@quick-qui/model-core";
 import { functionWeavers } from "./FunctionWeavers";
 import { FunctionValidator } from "./FunctionValidator";
-import { deepMerge } from "../Util";
+import { deepMerge } from "../Merge";
 
 
 const functionDefine = {

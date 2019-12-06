@@ -1,5 +1,4 @@
 import l from "lodash";
-import  mergeOptions from "merge-options";
 
 declare global {
   interface Object {
@@ -14,6 +13,4 @@ Object.prototype._ = function() {
   return l(this);
 };
 
-export function deepMerge<T>(obj: T, source: any): T {
-  return mergeOptions.call({ concatArrays: true }, obj, source) as T;
-}
+

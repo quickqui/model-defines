@@ -1,4 +1,9 @@
-export { WithPresentationModel, PageModel, Page, Place } from "./PageModel";
-export { OneFunctionPagesWeaver, pageWeavers } from "./PageWeaver";
+export {
+  WithPresentationModel,
+  PageModel,
+  Page,
+  Place,
+  withPresentationModel
+} from "./PageModel";
 
 export { PresentationModel, Presentation } from "./PresentationModel";

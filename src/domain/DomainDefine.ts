@@ -3,7 +3,7 @@ import { Model, ValidateError } from "@quick-qui/model-core";
 import _ from "lodash";
 import { domainWeavers } from "./DomainWeavers";
 import { DomainValidator } from "./DomainValidator";
-import { deepMerge } from "../Util";
+import { deepMerge } from "../Merge";
 
 interface DomainPiece {
   entities: Entity[];
