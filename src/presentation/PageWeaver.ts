@@ -9,10 +9,9 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
   weave(model: Model): [Model, ModelWeaveLog[]] {
     let m = model as Model & WithFunctionModel & WithPresentationModel;
     const functions = m.functionModel.functions;
-    //TODO 没有entry的也要有？
+    //NOTE 没有entry的也要有？ 是的，因为会被link到活着redirect到，等等。
     const re: ModelWeaveLog[] = [];
     functions
-      .filter(f => !_.isNil(f.entry))
       .forEach(f => {
         const pages: Page[] = m.pageModel.pages ?? [];
         let page: Page | undefined = undefined;
@@ -23,8 +22,8 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
         if (_.isNil(page)) {
           const newPage = {
             name: `oneFunctionPage${f.name}`,
-            menuPath: f.entry!.menuPath,
-            icon: f.entry!.icon,
+            menuPath: f.entry?.menuPath,
+            icon: f.entry?.icon,
             gride: "1",
             places: [
               {

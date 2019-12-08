@@ -23,7 +23,7 @@ export interface PageModel {
 
 export interface Page extends WithAnnotations {
   name: string;
-  menuPath: string;
+  menuPath?: string;
   icon?: string;
   gride: string;
   places: Place[];
