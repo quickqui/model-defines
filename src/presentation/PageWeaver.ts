@@ -16,7 +16,7 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
         const pages: Page[] = m.pageModel.pages ?? [];
         let page: Page | undefined = undefined;
         if (pages) {
-          //TODO 不光要通过名字找，还要通过实际的只有一个function的page找？
+          //TODO 不光要通过名字找，还要通过实际的只有一个function的page找？是否要支持多个function指定了一个entry的情况？
           page = pages.find(p => p.name === `oneFunctionPage${f.name}`);
         }
         if (_.isNil(page)) {

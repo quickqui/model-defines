@@ -7,20 +7,9 @@ const define = {
     return [];
   },
   merge(model: Model & WithImplementationModel, piece: any): Model {
-    // return {
-    //   ...model,
-    //   implementationModel: {
-    //     ...model.implementationModel,
-    //     implementations: [
-    //       ...(model.implementationModel?.implementations ?? []),
-    //       ...(piece.implementations ?? [])
-    //     ]
-    //   }
-    // };
-        return deepMerge(model, {
-          implementationModel: { implementations: piece.implementations ?? [] }
-        });
-
+    return deepMerge(model, {
+      implementationModel: { implementations: piece.implementations ?? [] }
+    });
   },
 
   validateAfterMerge(model: Model): ValidateError[] {
