@@ -23,6 +23,7 @@ export interface PageModel {
 
 export interface Page extends WithAnnotations {
   name: string;
+  order?:number ;//NOTE 升序排列。-10000最前面
   menuPath?: string;
   icon?: string;
   gride: string;
