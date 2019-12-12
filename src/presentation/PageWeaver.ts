@@ -1,6 +1,6 @@
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { WithFunctionModel } from "../function/FunctionModel";
-import * as _ from "lodash";
+import _ from "lodash";
 import {
   Page,
   WithPresentationModel,
@@ -48,7 +48,7 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
   }
 }
 
-class PageSortWeaver implements ModelWeaver {
+export class PageSortWeaver implements ModelWeaver {
   name = "sortPage";
   weave(model: Model): [Model, ModelWeaveLog[]] {
     const pages = withPresentationModel(model)?.pageModel.pages;

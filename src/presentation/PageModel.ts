@@ -26,7 +26,7 @@ export interface Page extends WithAnnotations {
   order?:number ;//NOTE 升序排列。-10000最前面
   menuPath?: string;
   icon?: string;
-  gride: string;
+  layout:any;
   places: Place[];
 }
 export interface Place {
@@ -34,4 +34,5 @@ export interface Place {
   // position: string
   // size: string
   presentation: string;
+  layout:any
 }

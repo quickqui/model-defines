@@ -1,8 +1,9 @@
 {
+  "$ref": "#/definitions/PageModel",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "Annotation": {
-      "type": "object"
+      "$ref": "#/definitions/StringKeyObject"
     },
     "Page": {
       "additionalProperties": false,
@@ -10,17 +11,19 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
-        "gride": {
-          "type": "string"
-        },
         "icon": {
           "type": "string"
+        },
+        "layout": {
         },
         "menuPath": {
           "type": "string"
         },
         "name": {
           "type": "string"
+        },
+        "order": {
+          "type": "number"
         },
         "places": {
           "items": {
@@ -31,9 +34,7 @@
       },
       "required": [
         "name",
-        "menuPath",
-        "icon",
-        "gride",
+        "layout",
         "places"
       ],
       "type": "object"
@@ -59,14 +60,20 @@
         "function": {
           "type": "string"
         },
+        "layout": {
+        },
         "presentation": {
           "type": "string"
         }
       },
       "required": [
         "function",
-        "presentation"
+        "presentation",
+        "layout"
       ],
+      "type": "object"
+    },
+    "StringKeyObject": {
       "type": "object"
     }
   }
