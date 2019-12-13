@@ -15,17 +15,6 @@ const domainDefine = {
     return [];
   },
   merge(model: Model & WithDomainModel, piece: any): Model {
-    // return {
-    //   ...model,
-    //   domainModel: {
-    //     ...model.domainModel,
-    //     entities: [
-    //       ...(model.domainModel?.entities ?? []),
-    //       ...(piece.entities ?? [])
-    //     ],
-    //     enums: [...(model.domainModel?.enums ?? []), ...(piece.enums ?? [])]
-    //   }
-    // };
     return deepMerge(model, {
       domainModel: { entities: piece.entities ?? [], enums: piece.enums ?? [] }
     });

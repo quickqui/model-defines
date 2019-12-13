@@ -1,6 +1,6 @@
 import { ModelWeaveLog, Model } from "@quick-qui/model-core";
-import {  WithAnnotations } from "../Annotation";
-import _ =require("lodash");
+import { WithAnnotations } from "../Annotation";
+import _ = require("lodash");
 import { Inject } from "../BaseDefine";
 
 export interface WithDomainModel {
@@ -8,18 +8,18 @@ export interface WithDomainModel {
 }
 
 export function withDomainModel(model: Model): WithDomainModel | undefined {
-         if ((model as any).domainModel) {
-           return model as WithDomainModel;
-         } else {
-           return undefined;
-         }
-       }
+  if ((model as any).domainModel) {
+    return model as WithDomainModel;
+  } else {
+    return undefined;
+  }
+}
 export interface DomainModel {
   entities: Entity[];
   enums: Enum[];
 }
 
-export interface Entity extends WithAnnotations{
+export interface Entity extends WithAnnotations {
   name: string;
   properties: Property[];
   //inject 是推模式，当前定义注入到之前模式，当前定义最终不生效。
@@ -53,7 +53,7 @@ interface Relation {
 
 export function forEachEntity(
   model: Model & WithDomainModel,
-  fun: (entity: Entity) => [Entity, ModelWeaveLog?]
+  fun: (entity: Entity) => [Entity, ModelWeaveLog[]]
 ): [Model, ModelWeaveLog[]] {
   const entities = model.domainModel!.entities;
   let logs: ModelWeaveLog[] = [];
@@ -61,7 +61,7 @@ export function forEachEntity(
   entities.forEach(entity => {
     let [en, log] = fun(entity);
     newEntities.push(en);
-    if (log) logs.push(log);
+    if (log) logs = logs.concat(log);
   });
   return [
     {

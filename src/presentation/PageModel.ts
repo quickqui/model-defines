@@ -5,7 +5,7 @@ import { Model } from "@quick-qui/model-core";
 export function withPresentationModel(
   model: Model
 ): WithPresentationModel | undefined {
-  if ((model as any).presentationModel && (model as any).pageMode) {
+  if ((model as any).presentationModel && (model as any).pageModel) {
     return model as WithPresentationModel;
   } else {
     return undefined;

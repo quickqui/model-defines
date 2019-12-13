@@ -6,4 +6,4 @@ export {
   withPresentationModel
 } from "./PageModel";
 
-export { PresentationModel, Presentation } from "./PresentationModel";
+export { PresentationModel, Presentation,rulesHelp,findPresentation } from "./PresentationModel";

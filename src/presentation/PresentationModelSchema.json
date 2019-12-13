@@ -5,20 +5,33 @@
     "Presentation": {
       "additionalProperties": false,
       "properties": {
-        "brief": {
-          "type": "string"
-        },
-        "context": {
-          "type": "string"
-        },
-        "display": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "name": {
           "type": "string"
+        },
+        "propertyRules": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "order": {
+                "type": "number"
+              },
+              "property": {
+                "type": "string"
+              },
+              "rule": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "property",
+              "rule"
+            ],
+            "type": "object"
+          },
+          "type": "array"
         },
         "resource": {
           "type": "string"
@@ -26,10 +39,8 @@
       },
       "required": [
         "name",
-        "context",
         "resource",
-        "display",
-        "brief"
+        "propertyRules"
       ],
       "type": "object"
     },

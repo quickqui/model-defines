@@ -1,0 +1,4 @@
+defines:
+  - name: presentation
+    filePattern: '**/**.presentationModel.yml'
+    extend: 'presentation/PresentationDefine'
