@@ -7,17 +7,6 @@ const define = {
     return [];
   },
   merge(model: Model, piece: any): Model {
-    //   return {
-    //     ..._model,
-    //     presentationModel: {
-    //       ..._model.presentationModel,
-    //       presentations: [
-    //         ...(_model.presentationModel?.presentations ?? []),
-    //         ...(piece.presentations ?? [])
-    //       ]
-    //     }
-    //   } as Model;
-    // },
     return deepMerge(model, {
       presentationModel: { presentations: piece.presentations ?? [] }
     });

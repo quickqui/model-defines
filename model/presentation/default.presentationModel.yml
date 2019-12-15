@@ -1,0 +1,6 @@
+presentations:
+  - name: default
+    propertyRules:
+      - property: id 
+        rules: [disabled]
+        order: -10000
