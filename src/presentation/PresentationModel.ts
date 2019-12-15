@@ -19,7 +19,7 @@ export interface Presentation {
 //NOTE: PropertyRule 在定义表现的时候是有用的，比如在狭窄的时候不显示xx属性。
 //NOTE: PropertyRule 在功能里面也是有用的，比如在某某功能的某个entity是不写xx属性的。还有可能跟权限有结合
 
-interface PropertyRule {
+export interface PropertyRule {
   property: string;
   rules: string[]; //hidden, masked, enabled/disabled, Component
   order?: number;
@@ -46,16 +46,3 @@ export function findPresentation(
   return re;
 }
 
-export function rulesHelp(
-  presentation: Presentation | undefined,
-  property: Property
-): { isHidden: boolean } {
-  const rule: PropertyRule | undefined = presentation?.propertyRules?.find(
-    propertyRule => propertyRule.property === property.name
-  );
-
-  return {
-    //TODO 引入白名单， 当有property定义shown的时候，其他自动hidden
-    isHidden: rule?.rules?.find(it => it === "hidden") ? true : false
-  };
-}
