@@ -10,7 +10,7 @@ const functionDefine = {
     return [];
   },
 
-  merge(model: Model & WithFunctionModel, piece: any): Model {
+  merge(model: Model , piece: any): Model {
     return deepMerge(model, {
       functionModel: { functions: piece.functions ?? [] }
     });

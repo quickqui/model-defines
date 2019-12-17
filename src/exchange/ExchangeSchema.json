@@ -1,0 +1,45 @@
+{
+  "$ref": "#/definitions/Exchange",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Exchange": {
+      "additionalProperties": false,
+      "properties": {
+        "extension": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "parameters": {
+          "$ref": "#/definitions/StringKeyObject"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "protocol",
+        "resources"
+      ],
+      "type": "object"
+    },
+    "StringKeyObject": {
+      "type": "object"
+    }
+  }
+}

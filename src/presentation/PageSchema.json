@@ -1,5 +1,5 @@
 {
-  "$ref": "#/definitions/PageModel",
+  "$ref": "#/definitions/Page",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "Annotation": {
@@ -36,21 +36,6 @@
         "name",
         "layout",
         "places"
-      ],
-      "type": "object"
-    },
-    "PageModel": {
-      "additionalProperties": false,
-      "properties": {
-        "pages": {
-          "items": {
-            "$ref": "#/definitions/Page"
-          },
-          "type": "array"
-        }
-      },
-      "required": [
-        "pages"
       ],
       "type": "object"
     },

@@ -1,4 +1,4 @@
 defines:
   - name: function
-    filePattern: '**/*.functionModel.yml'
+    filePattern: '**/**.@(functionModel|functions).yml'
     extend: 'function/FunctionDefine'

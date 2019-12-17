@@ -1,15 +1,14 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
+import { deepMerge } from "../Merge";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
     return [];
   },
   merge(model: Model, piece: any): Model {
-    const _model = model as any;
-    return {
-      ..._model,
-      dataSources: (_model.dataSources ?? []).concat(piece.dataSources ?? [])
-    } as Model;
+    return deepMerge(model, {
+      exchangeModel: { exchanges: piece.exchanges ?? [] }
+    });
   },
 
   validateAfterMerge(model: Model): ValidateError[] {

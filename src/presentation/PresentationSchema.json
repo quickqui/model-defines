@@ -1,0 +1,57 @@
+{
+  "$ref": "#/definitions/Presentation",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Presentation": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "propertyRules": {
+          "items": {
+            "$ref": "#/definitions/PropertyRule"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "type": "string"
+        },
+        "uiElementRules": {
+          "$ref": "#/definitions/StringKeyObject"
+        }
+      },
+      "required": [
+        "name",
+        "propertyRules",
+        "uiElementRules"
+      ],
+      "type": "object"
+    },
+    "PropertyRule": {
+      "additionalProperties": false,
+      "properties": {
+        "order": {
+          "type": "number"
+        },
+        "property": {
+          "type": "string"
+        },
+        "rules": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "property",
+        "rules"
+      ],
+      "type": "object"
+    },
+    "StringKeyObject": {
+      "type": "object"
+    }
+  }
+}

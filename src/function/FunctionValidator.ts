@@ -14,7 +14,6 @@ export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
-    //TODO 注意：resource跟domain/entity并非一一对应。
     return [
       ...extendValidate(model),
       ...(withFunctionModel(model)?.functionModel?.p(bySchema) ?? [])

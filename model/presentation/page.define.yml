@@ -1,4 +1,4 @@
 defines:
   - name: page
-    filePattern: '**/**.page.yml'
+    filePattern: '**/**.@(page|pages|pageModel).yml'
     extend: 'presentation/PageDefine'

@@ -1,4 +1,0 @@
-defines:
-  - name: dataSource
-    filePattern: "**/**.dataSource.yml"
-    extend: 'DataSourceDefine'

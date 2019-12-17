@@ -1,4 +1,4 @@
 defines:
   - name: implementation
-    filePattern: '**/*.implementation.yml'
+    filePattern: '**/**.@(implementation|implementationModel|implementations).yml'
     extend: 'implementation/ImplementationDefine'
