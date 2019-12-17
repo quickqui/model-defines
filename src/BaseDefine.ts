@@ -2,7 +2,22 @@ import * as _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
 
+//TODO 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
+// 倾向于让具体的define自己处理，比如 -
+/*
+    properties: 
+      id: [Id, required, unique]
 
+    等效于
+    properties: 
+      - name: id
+        type: Id
+        constraints:
+          - required
+          - unique
+*/
+//可以在define.merge方法中，先处理，然后merge， 目测可以支持一切预处理，包括解析。
+// 如果要用dsl 也不是不可以， 如果是yaml格式，可以用长字符串， 然后解析
 
 export type StringKeyObject = { [key: string]: any };
 // ref := category/id
@@ -41,5 +56,3 @@ export function getNameInsureCategory(
 ): string {
   return getNameWithCategory(ref, insureCategory).name;
 }
-
-

@@ -19,6 +19,11 @@ export interface DomainModel {
   enums: Enum[];
 }
 
+
+/*TODO 如何支持，动态的属性？多种子类？
+  不同的子类型有不同的属性。
+*/
+
 export interface Entity extends WithAnnotations {
   name: string;
   properties: Property[];
