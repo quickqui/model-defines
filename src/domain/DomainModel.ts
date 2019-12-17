@@ -46,7 +46,9 @@ export interface List {
 }
 
 export interface Enum {
+  name: string;
   values: string[];
+  type: string;
 }
 
 type Constraint = string;

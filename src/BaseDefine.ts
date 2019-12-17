@@ -19,6 +19,19 @@ import { Annotation } from "./Annotation";
 //可以在define.merge方法中，先处理，然后merge， 目测可以支持一切预处理，包括解析。
 // 如果要用dsl 也不是不可以， 如果是yaml格式，可以用长字符串， 然后解析
 
+
+//TODO 需要在各个主要model之间形成基本的语义统一
+/**
+ * abstract
+ * name
+ * ref
+ * extend inject
+ * resource
+ * extension
+ * parameters
+ * annotations
+ * order
+ */
 export type StringKeyObject = { [key: string]: any };
 // ref := category/id
 export type Ref = string;
