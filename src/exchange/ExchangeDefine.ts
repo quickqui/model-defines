@@ -1,5 +1,6 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { deepMerge } from "../Merge";
+import { ExchangeValidator } from "./ExchangeValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -12,7 +13,7 @@ const define = {
   },
 
   validateAfterMerge(model: Model): ValidateError[] {
-    return [];
+    return new ExchangeValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
     return [];
