@@ -46,7 +46,7 @@ function push(
   if (entity.inject) {
     const target = getEntity(
       model,
-      getNameInsureCategory(entity.inject.ref, "entity")
+      getNameInsureCategory(entity.inject.ref, "entities")
     );
     if (target) {
       //TODO 处理冲突，同名的property 需要一个合并策略。

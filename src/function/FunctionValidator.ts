@@ -26,7 +26,7 @@ function extendValidate(model: Model): ValidateError[] {
   withFunctionModel(model)?.functionModel.functions.forEach(fun => {
     if (fun.extend) {
       try {
-        const name = getNameInsureCategory(fun.extend.ref, "function");
+        const name = getNameInsureCategory(fun.extend.ref, "functions");
         if (!existFunction(model, name)) {
           re.push(
             new ValidateError(

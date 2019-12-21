@@ -30,7 +30,7 @@ export interface Function extends WithAnnotations {
   extend?: Extend;
   //TODO 问题，是否有必要多个command？如果有多个command，prefill应该听谁的？
   command?: Command;
-  query?: Query[];
+  query?: Query;
   //TODO 移到annotation中。
   entry?: Entry;
   //TODO 问题：只有list才有links？

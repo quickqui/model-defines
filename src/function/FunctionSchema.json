@@ -93,22 +93,19 @@
           "$ref": "#/definitions/StringKeyObject"
         },
         "query": {
-          "items": {
-            "additionalProperties": false,
-            "properties": {
-              "filter": {
-                "$ref": "#/definitions/StringKeyObject"
-              },
-              "parameters": {
-                "$ref": "#/definitions/StringKeyObject"
-              },
-              "sort": {
-                "$ref": "#/definitions/StringKeyObject"
-              }
+          "additionalProperties": false,
+          "properties": {
+            "filter": {
+              "$ref": "#/definitions/StringKeyObject"
             },
-            "type": "object"
+            "parameters": {
+              "$ref": "#/definitions/StringKeyObject"
+            },
+            "sort": {
+              "$ref": "#/definitions/StringKeyObject"
+            }
           },
-          "type": "array"
+          "type": "object"
         },
         "resource": {
           "type": "string"
@@ -124,6 +121,7 @@
       "type": "string"
     },
     "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
       "type": "object"
     }
   }

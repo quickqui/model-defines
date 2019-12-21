@@ -12,7 +12,7 @@ export class ExtendWeaver implements ModelWeaver {
       if (fun.extend) {
         const extendTargetName = getNameInsureCategory(
           fun.extend.ref,
-          "function"
+          "functions"
         );
         const extendTarget = getFunction(m.functionModel, extendTargetName);
         if (!extendTarget) {

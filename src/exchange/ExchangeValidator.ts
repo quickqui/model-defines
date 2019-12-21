@@ -4,7 +4,6 @@ import "../Util";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
 import schema from "./ExchangeSchema.json";
-import _ from "lodash";
 export class ExchangeValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
@@ -15,6 +14,8 @@ export class ExchangeValidator implements ModelValidator {
 const s = enjoi.schema(schema);
 
 function bySchema(model: ExchangeModel): ValidateError[] {
+  console.log(model)
+  console.log(model.exchanges)
   return model.exchanges
     .map(exchange => {
       const { error, value } = joi.validate(exchange, s, { abortEarly: false });
