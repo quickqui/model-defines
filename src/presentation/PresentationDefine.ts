@@ -1,14 +1,15 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
-import { WithPresentationModel } from "./PageModel";
-import { deepMerge } from "../Merge";
+import { deepMerge, withNamespace } from "../Merge";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
     return [];
   },
-  merge(model: Model, piece: any): Model {
+  merge(model: Model, piece: any, buildingContext: any): Model {
     return deepMerge(model, {
-      presentationModel: { presentations: piece.presentations ?? [] }
+      presentationModel: {
+        presentations: withNamespace(piece.presentations??[], buildingContext)
+      }
     });
   },
 

@@ -17,6 +17,9 @@
         "name": {
           "type": "string"
         },
+        "namespace": {
+          "type": "string"
+        },
         "properties": {
           "items": {
             "$ref": "#/definitions/Property"
@@ -26,21 +29,13 @@
       },
       "required": [
         "name",
+        "namespace",
         "properties"
       ],
       "type": "object"
     },
     "Inject": {
-      "additionalProperties": false,
-      "properties": {
-        "ref": {
-          "$ref": "#/definitions/Ref"
-        }
-      },
-      "required": [
-        "ref"
-      ],
-      "type": "object"
+      "$ref": "#/definitions/Ref"
     },
     "List": {
       "additionalProperties": false,
@@ -108,6 +103,7 @@
       "type": "string"
     },
     "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
       "type": "object"
     }
   }

@@ -1,14 +1,19 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
-import { deepMerge } from "../Merge";
+import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 import { ExchangeValidator } from "./ExchangeValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
     return [];
   },
-  merge(model: Model, piece: any): Model {
+  merge(model: Model, piece: any, buildingContext: any): Model {
     return deepMerge(model, {
-      exchangeModel: { exchanges: piece.exchanges ?? [] }
+      exchangeModel: {
+        exchanges: withBuildingContext(
+          withNamespace(piece.exchanges??[], buildingContext),
+          buildingContext
+        )
+      }
     });
   },
 

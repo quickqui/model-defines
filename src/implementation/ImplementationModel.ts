@@ -1,4 +1,6 @@
 import { Model } from "@quick-qui/model-core";
+import { WithNamespace } from "../BaseDefine";
+import { WithAnnotations } from "../Annotation";
 
 export function withImplementationModel(
   model: Model
@@ -18,8 +20,7 @@ export interface ImplementationModel {
   implementations: Implementation[];
 }
 
-export interface Implementation {
-  name: string;
+export interface Implementation extends WithAnnotations,  WithNamespace{
   lifeCycle?: { [key: string]: any };
   parameters?: { [key: string]: any };
 }

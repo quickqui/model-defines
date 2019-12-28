@@ -1,8 +1,9 @@
+import { REF_REST } from './BaseDefine';
 export * from "./domain";
 export * from "./function";
 export * from "./implementation";
 export * from "./presentation";
-export * from './exchange'
+export * from "./exchange";
 export { Annotation, WithAnnotations, appendAnnotation } from "./Annotation";
 export {
   StringKeyObject,
@@ -10,5 +11,10 @@ export {
   Extend,
   Inject,
   getNameWithCategory,
-  getNameInsureCategory
+  getNameInsureCategory,
+  parseRef,
+  REF_INTERNAL,
+  REF_RESOLVE,
+  REF_REST,
+  REF_PROVIDED
 } from "./BaseDefine";

@@ -1,6 +1,7 @@
-import * as _ from "lodash";
+import _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
+import url from "url";
 
 //TODO 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
 // 倾向于让具体的define自己处理，比如 -
@@ -19,7 +20,6 @@ import { Annotation } from "./Annotation";
 //可以在define.merge方法中，先处理，然后merge， 目测可以支持一切预处理，包括解析。
 // 如果要用dsl 也不是不可以， 如果是yaml格式，可以用长字符串， 然后解析
 
-
 //TODO 需要在各个主要model之间形成基本的语义统一
 /**
  * abstract
@@ -33,14 +33,39 @@ import { Annotation } from "./Annotation";
  * order
  */
 export type StringKeyObject = { [key: string]: any };
-// ref := category/id
+// ref := "rest":category/id  rest in model.
+// ref := "resolve":path
+// ref :=
 export type Ref = string;
 
-//NOTE 把目标拉入到自己中，目标还在，其他人还可以用，但一般不会最终出现在business中，类似于目标是abstract=true
-export type Extend = { ref: Ref };
+export interface WithNamespace {
+  namespace: string;
+  name: string;
+}
 
+//NOTE 把目标拉入到自己中，目标还在，其他人还可以用，但一般不会最终出现在business中，类似于目标是abstract=true
+export type Extend = Ref
 //NOTE 将自己注入到目标中，自己一般就不要了。
-export type Inject = { ref: Ref };
+export type Inject = Ref
+
+export const REF_INTERNAL = "internal";
+export const REF_RESOLVE = "resolve";
+export const REF_REST = "rest";
+export const REF_PROVIDED = "provided";
+
+export interface RefObject {
+  protocol: string;
+  path: string;
+}
+
+export function parseRef(ref: Ref): RefObject | undefined {
+  const { protocol, pathname, hostname } = url.parse(ref);
+
+  return {
+    protocol: protocol.endsWith(":") ? protocol.slice(0, -1) : protocol,
+    path: pathname ?? hostname
+  };
+}
 
 export function getNameWithCategory(
   ref: Ref,

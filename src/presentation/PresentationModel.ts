@@ -1,15 +1,15 @@
 import { Model } from "@quick-qui/model-core";
 import { withPresentationModel } from "./PageModel";
 import { Property } from "../domain/DomainModel";
-import { StringKeyObject } from "../BaseDefine";
+import { StringKeyObject, WithNamespace } from "../BaseDefine";
+import { WithAnnotations } from "../Annotation";
 
 export interface PresentationModel {
   presentations: Presentation[];
 }
 
-export interface Presentation {
+export interface Presentation extends WithAnnotations, WithNamespace {
   //TODO presentation定位方式需要进一步考虑，是否需要resource？
-  name: string;
   resource?: string; //entity 或者 command
   propertyRules: PropertyRule[];
   //NOTE 操作元素的配置放在这里。比如下来paging，下拉filter之类的元素的配置（存在？形式？） 可以放在这里。

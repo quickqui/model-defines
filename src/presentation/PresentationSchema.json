@@ -2,10 +2,19 @@
   "$ref": "#/definitions/Presentation",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Annotation": {
+      "$ref": "#/definitions/StringKeyObject"
+    },
     "Presentation": {
       "additionalProperties": false,
       "properties": {
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
         "name": {
+          "type": "string"
+        },
+        "namespace": {
           "type": "string"
         },
         "propertyRules": {
@@ -23,6 +32,7 @@
       },
       "required": [
         "name",
+        "namespace",
         "propertyRules",
         "uiElementRules"
       ],
@@ -51,6 +61,7 @@
       "type": "object"
     },
     "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
       "type": "object"
     }
   }

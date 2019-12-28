@@ -11,7 +11,7 @@ export class ExtendWeaver implements ModelWeaver {
     m.functionModel.functions.forEach(fun => {
       if (fun.extend) {
         const extendTargetName = getNameInsureCategory(
-          fun.extend.ref,
+          fun.extend,
           "functions"
         );
         const extendTarget = getFunction(m.functionModel, extendTargetName);

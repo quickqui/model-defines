@@ -2,13 +2,22 @@
   "$ref": "#/definitions/Implementation",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Annotation": {
+      "$ref": "#/definitions/StringKeyObject"
+    },
     "Implementation": {
       "additionalProperties": false,
       "properties": {
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
         "lifeCycle": {
           "type": "object"
         },
         "name": {
+          "type": "string"
+        },
+        "namespace": {
           "type": "string"
         },
         "parameters": {
@@ -16,8 +25,13 @@
         }
       },
       "required": [
-        "name"
+        "name",
+        "namespace"
       ],
+      "type": "object"
+    },
+    "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
       "type": "object"
     }
   }

@@ -2,13 +2,25 @@
   "$ref": "#/definitions/Exchange",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
+    "Annotation": {
+      "$ref": "#/definitions/StringKeyObject"
+    },
     "Exchange": {
       "additionalProperties": false,
       "properties": {
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
         "extension": {
           "type": "string"
         },
         "from": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
           "type": "string"
         },
         "order": {
@@ -32,13 +44,16 @@
       },
       "required": [
         "from",
-        "to",
+        "name",
+        "namespace",
         "protocol",
-        "resources"
+        "resources",
+        "to"
       ],
       "type": "object"
     },
     "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
       "type": "object"
     }
   }

@@ -6,16 +6,7 @@
       "$ref": "#/definitions/StringKeyObject"
     },
     "Extend": {
-      "additionalProperties": false,
-      "properties": {
-        "ref": {
-          "$ref": "#/definitions/Ref"
-        }
-      },
-      "required": [
-        "ref"
-      ],
-      "type": "object"
+      "$ref": "#/definitions/Ref"
     },
     "Function": {
       "additionalProperties": false,
@@ -89,6 +80,9 @@
         "name": {
           "type": "string"
         },
+        "namespace": {
+          "type": "string"
+        },
         "parameters": {
           "$ref": "#/definitions/StringKeyObject"
         },
@@ -113,6 +107,7 @@
       },
       "required": [
         "name",
+        "namespace",
         "resource"
       ],
       "type": "object"

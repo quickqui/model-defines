@@ -1,15 +1,23 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { pageWeavers } from "./PageWeaver";
 import { WithPresentationModel } from "./PageModel";
-import { deepMerge } from "../Merge";
+import { deepMerge, withNamespace } from "../Merge";
 import { PageValidator } from "./PageValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
     return [];
   },
-  merge(model: Model & WithPresentationModel, piece: any): Model {
-    return deepMerge(model, {pageModel:{pages:piece.pages??[]}})
+  merge(
+    model: Model & WithPresentationModel,
+    piece: any,
+    buildingContext: any
+  ): Model {
+    return deepMerge(model, {
+      pageModel: {
+        pages: withNamespace(piece.pages??[],buildingContext)
+      }
+    });
   },
 
   validateAfterMerge(model: Model): ValidateError[] {

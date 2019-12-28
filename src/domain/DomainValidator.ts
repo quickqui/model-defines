@@ -27,7 +27,7 @@ function injectValidate(model: Model): ValidateError[] {
     m.domainModel.entities.forEach(entity => {
       if (entity.inject) {
         try {
-          const name = getNameInsureCategory(entity.inject.ref, "entities");
+          const name = getNameInsureCategory(entity.inject, "entities");
           if (!existEntity(m, name)) {
             re.push(
               new ValidateError(

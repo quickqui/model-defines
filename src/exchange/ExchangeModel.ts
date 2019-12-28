@@ -1,5 +1,6 @@
 import { Model } from "@quick-qui/model-core";
-import { StringKeyObject } from "../BaseDefine";
+import { StringKeyObject, WithNamespace } from "../BaseDefine";
+import { WithAnnotations } from "../Annotation";
 
 export function withExchangeModel(model: Model): WithExchangeModel | undefined {
   if ((model as any).exchangeModel) {
@@ -17,12 +18,12 @@ export interface ExchangeModel {
   exchanges: Exchange[];
 }
 
-export interface Exchange {
-  from: string; 
-  to: string; //externals, front, back, database, 
+export interface Exchange extends WithNamespace,WithAnnotations {
+  from: string;
+  to: string; //externals, front, back, database,
   protocol: string; //dp, rest, grapghql
   extension?: string;
   resources: string[];
   order?: number;
-  parameters?: StringKeyObject // url if external...
+  parameters?: StringKeyObject; // url if external...
 }
