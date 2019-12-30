@@ -16,5 +16,6 @@ export {
   REF_INTERNAL,
   REF_RESOLVE,
   REF_REST,
-  REF_PROVIDED
+  REF_PROVIDED,
+  parseRefWithProtocolInsure
 } from "./BaseDefine";

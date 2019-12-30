@@ -53,23 +53,29 @@ export const REF_REST = "rest";
 export const REF_PROVIDED = "provided";
 
 export interface RefObject {
-  protocol: string| undefined;
+  protocol: string | undefined;
   path: string;
 }
 
-export function parseRef(ref: Ref): RefObject  {
-  const parts = ref.split(':')
-  if(parts.length === 1){
+export function parseRef(ref: Ref): RefObject {
+  const parts = ref.split(":");
+  if (parts.length === 1) {
     return { protocol: undefined, path: parts[0] };
   }
-  if(parts.length === 2){
-    return { protocol: parts[0], path: parts[1]}
-  }
-  else {
-    throw new Error(`not supported ref format: ${ref}`)
+  if (parts.length === 2) {
+    return { protocol: parts[0], path: parts[1] };
+  } else {
+    throw new Error(`not supported ref format: ${ref}`);
   }
 }
-
+export function parseRefWithProtocolInsure(
+  ref: Ref,
+  protocolInsure: string = REF_RESOLVE
+): RefObject {
+  const re = parseRef(ref);
+  if (protocolInsure === re.protocol) return re;
+  throw new Error(`Invalid protocol - ${re.protocol}`);
+}
 export function getNameWithCategory(
   ref: Ref,
   insureCategory?: string

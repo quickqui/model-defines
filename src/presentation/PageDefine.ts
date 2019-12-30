@@ -15,7 +15,7 @@ const define = {
   ): Model {
     return deepMerge(model, {
       pageModel: {
-        pages: withNamespace(piece.pages??[],buildingContext)
+        pages: withNamespace(piece.pages ?? [], buildingContext)
       }
     });
   },
