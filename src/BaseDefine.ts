@@ -1,7 +1,6 @@
 import _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
-import url from "url";
 
 //TODO 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
 // 倾向于让具体的define自己处理，比如 -
@@ -44,9 +43,9 @@ export interface WithNamespace {
 }
 
 //NOTE 把目标拉入到自己中，目标还在，其他人还可以用，但一般不会最终出现在business中，类似于目标是abstract=true
-export type Extend = Ref
+export type Extend = Ref;
 //NOTE 将自己注入到目标中，自己一般就不要了。
-export type Inject = Ref
+export type Inject = Ref;
 
 export const REF_INTERNAL = "internal";
 export const REF_RESOLVE = "resolve";
@@ -54,17 +53,21 @@ export const REF_REST = "rest";
 export const REF_PROVIDED = "provided";
 
 export interface RefObject {
-  protocol: string;
+  protocol: string| undefined;
   path: string;
 }
 
-export function parseRef(ref: Ref): RefObject | undefined {
-  const { protocol, pathname, hostname } = url.parse(ref);
-
-  return {
-    protocol: protocol.endsWith(":") ? protocol.slice(0, -1) : protocol,
-    path: pathname ?? hostname
-  };
+export function parseRef(ref: Ref): RefObject  {
+  const parts = ref.split(':')
+  if(parts.length === 1){
+    return { protocol: undefined, path: parts[0] };
+  }
+  if(parts.length === 2){
+    return { protocol: parts[0], path: parts[1]}
+  }
+  else {
+    throw new Error(`not supported ref format: ${ref}`)
+  }
 }
 
 export function getNameWithCategory(

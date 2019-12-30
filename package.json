@@ -22,8 +22,7 @@
     "lodash": "^4.17.15",
     "merge-options": "^2.0.0",
     "ramda": "^0.26.1",
-    "typescript": "^3.7.4",
-    "url": "^0.11.0"
+    "typescript": "^3.7.4"
   },
   "devDependencies": {
     "ts-json-schema-generator": "^0.56.0"

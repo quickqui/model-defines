@@ -1,4 +1,4 @@
 defines:
   - name: domain
     filePattern: '**/*.domainModel.yml'
-    extend: 'domain/DomainDefine'
+    define: 'resolve:domain/DomainDefine'

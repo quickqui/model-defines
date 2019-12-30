@@ -1,4 +1,4 @@
 defines:
   - name: presentation
     filePattern: '**/**.@(presentationModel|presentations|presentation).yml'
-    extend: 'presentation/PresentationDefine'
+    define: 'resolve:presentation/PresentationDefine'

@@ -1,4 +1,4 @@
 defines:
   - name: exchange
     filePattern: "**/**.@(exchange|exchangeModel|exchanges).yml"
-    extend: 'exchange/ExchangeDefine'
+    define: 'resolve:exchange/ExchangeDefine'
