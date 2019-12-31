@@ -1,15 +1,20 @@
 import { ModelValidator, ValidateError, Model } from "@quick-qui/model-core";
-import { withPresentationModel } from "./PageModel";
+import { withPresentationModel, PageModel } from "./PageModel";
 import { withFunctionModel } from "../function/FunctionModel";
 import _ from "lodash";
 
+import enjoi from "enjoi";
+import * as joi from "@hapi/joi";
+import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    return functionExistsValidator(model);
+    return (pageFunctionExistsValidator(model) ?? []).concat(
+      withPresentationModel(model)?.pageModel?.p(bySchema)
+    );
   }
 }
 
-function functionExistsValidator(model: Model): ValidateError[] {
+function pageFunctionExistsValidator(model: Model): ValidateError[] {
   const fm = withFunctionModel(model);
   if (!fm) {
     if (withPresentationModel(model)?.pageModel?.pages?.length ?? 0 > 0) {
@@ -37,4 +42,19 @@ function functionExistsValidator(model: Model): ValidateError[] {
     });
   });
   return re ?? [];
+}
+
+const s = enjoi.schema(schema);
+function bySchema(model: PageModel): ValidateError[] {
+  return model.pages
+    .map(page => {
+      const { error, value } = joi.validate(page, s, { abortEarly: false });
+      return (
+        error?.details.map(
+          detail =>
+            new ValidateError(`pages/${page.name ?? "_noName"}`, detail.message)
+        ) ?? []
+      );
+    })
+    .flat();
 }

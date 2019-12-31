@@ -42,8 +42,8 @@ function extendValidate(model: Model): ValidateError[] {
   });
   return re;
 }
-const s = enjoi.schema(schema);
 
+const s = enjoi.schema(schema);
 function bySchema(model: FunctionModel): ValidateError[] {
   return model.functions
     .filter(fun => !(fun.abstract === true))

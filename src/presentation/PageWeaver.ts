@@ -47,9 +47,7 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
             `page generated for function - ${f.name}`
           )
         );
-        console.log(m.pageModel.pages.map(p => p.name).join(" "));
         m = deepMerge(m, { pageModel: { pages: [newPage] } });
-        console.log(m.pageModel.pages.map(p => p.name).join(" "));
       }
     });
     return [m, re];
