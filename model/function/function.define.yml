@@ -1,4 +1,4 @@
 defines:
   - name: function
-    filePattern: '**/**.@(functionModel|functions).yml'
+    filePattern: '**/**.@(functionModel|functions|function).yml'
     define: 'resolve:function/FunctionDefine'

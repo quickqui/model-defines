@@ -1,5 +1,6 @@
 
 export {
+    withDomainModel,
     WithDomainModel,
     DomainModel,
     Entity,

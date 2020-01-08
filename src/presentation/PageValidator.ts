@@ -9,7 +9,7 @@ import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     return (pageFunctionExistsValidator(model) ?? []).concat(
-      withPresentationModel(model)?.pageModel?.p(bySchema)
+      withPresentationModel(model)?.pageModel?.p(bySchema) ?? []
     );
   }
 }
@@ -46,7 +46,7 @@ function pageFunctionExistsValidator(model: Model): ValidateError[] {
 
 const s = enjoi.schema(schema);
 function bySchema(model: PageModel): ValidateError[] {
-  return model.pages
+  return (model.pages ?? [])
     .map(page => {
       const { error, value } = joi.validate(page, s, { abortEarly: false });
       return (

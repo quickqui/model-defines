@@ -23,18 +23,13 @@
           },
           "type": "array"
         },
-        "resource": {
-          "type": "string"
-        },
         "uiElementRules": {
           "$ref": "#/definitions/StringKeyObject"
         }
       },
       "required": [
         "name",
-        "namespace",
-        "propertyRules",
-        "uiElementRules"
+        "namespace"
       ],
       "type": "object"
     },

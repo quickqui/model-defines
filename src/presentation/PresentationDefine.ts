@@ -1,5 +1,6 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { deepMerge, withNamespace } from "../Merge";
+import { PresentationValidator } from './PresentationValidator';
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -14,7 +15,7 @@ const define = {
   },
 
   validateAfterMerge(model: Model): ValidateError[] {
-    return [];
+    return new PresentationValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
     return [];

@@ -12,6 +12,10 @@ functions:
     abstract: true
     annotations:
       implementation: provided/delete
+  - name: show
+    abstract: true
+    annotations:
+      implementation: provided/show
   - name: view
     abstract: true
     annotations:

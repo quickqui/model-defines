@@ -3,6 +3,6 @@ export {
     WithImplementationModel,
     ImplementationModel,
     Implementation,
-    Deployment,
+    Deployment
 } from "./ImplementationModel";
-
+export { implementationGlobal} from './ImplementationGlobal'
