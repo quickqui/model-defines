@@ -10,6 +10,10 @@ export function withExchangeModel(model: Model): WithExchangeModel | undefined {
   }
 }
 
+export function exchanges(model: Model): Exchange[] {
+  return withExchangeModel(model)?.exchangeModel?.exchanges ?? [];
+}
+
 export interface WithExchangeModel {
   exchangeModel: ExchangeModel;
 }
@@ -18,7 +22,7 @@ export interface ExchangeModel {
   exchanges: Exchange[];
 }
 
-export interface Exchange extends WithNamespace,WithAnnotations {
+export interface Exchange extends WithNamespace, WithAnnotations {
   from: string;
   to: string; //externals, front, back, database,
   protocol: string; //dp, rest, grapghql

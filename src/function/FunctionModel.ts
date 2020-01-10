@@ -14,6 +14,9 @@ export function withFunctionModel(model: Model): WithFunctionModel | undefined {
     return undefined;
   }
 }
+export function functions(model: Model):Function[]{
+  return withFunctionModel(model)?.functionModel?.functions ?? [];
+}
 
 export interface FunctionModel {
   functions: Function[];
@@ -30,8 +33,6 @@ export interface Function extends WithAnnotations,WithNamespace {
   //TODO 问题，是否有必要多个command？如果有多个command，prefill应该听谁的？
   command?: Command;
   query?: Query;
-  //TODO 移到annotation中。
-  entry?: Entry;
   //TODO 问题：只有list才有links？
   links?: Link[];
   parameters?: StringKeyObject;

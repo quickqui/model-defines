@@ -13,6 +13,10 @@ export function withPresentationModel(
   }
 }
 
+export function pages(model: Model):Page[]{
+  return withPresentationModel(model)?.pageModel?.pages ?? [];
+}
+
 export interface WithPresentationModel {
   presentationModel: PresentationModel;
   pageModel: PageModel;
@@ -21,19 +25,21 @@ export interface WithPresentationModel {
 export interface PageModel {
   pages: Page[];
 }
+
+
         //TODO page 有没有参数？ 用于在page跳转的时候相互传递？
 
 export interface Page extends WithAnnotations, WithNamespace {
   order?: number; //NOTE 升序排列。-10000最前面
   menuPath?: string;
   icon?: string;
-  layout: any;
+  layout?: any;
   places: Place[];
 }
 export interface Place {
   function: string;
   // position: string
   // size: string
-  presentation: string;
-  layout:any
+  presentation?: string;
+  layout?:any
 }

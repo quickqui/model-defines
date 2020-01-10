@@ -11,6 +11,12 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
+        "injections": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "lifeCycle": {
           "type": "object"
         },

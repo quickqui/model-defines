@@ -36,7 +36,6 @@
         }
       },
       "required": [
-        "layout",
         "name",
         "namespace",
         "places"
@@ -56,9 +55,7 @@
         }
       },
       "required": [
-        "function",
-        "presentation",
-        "layout"
+        "function"
       ],
       "type": "object"
     },

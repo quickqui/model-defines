@@ -20,7 +20,7 @@ export interface Presentation extends WithAnnotations, WithNamespace {
 
 export interface PropertyRule {
   property: string;
-  rules: string[]; //hidden, masked, enabled/disabled, Component
+  rules?: string[]; //hidden, masked, enabled/disabled, Component
   order?: number;
 }
 

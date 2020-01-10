@@ -29,15 +29,18 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
       if (_.isNil(page)) {
         const newPage = {
           name: f.name,
-          menuPath: f.entry?.menuPath,
-          icon: f.entry?.icon,
+          menuPath: f.annotations?.["page"]?.menuPath,
+          icon: f.annotations?.["page"]?.icon,
           layout: {
-            gride: "1"
+            grid: 1
           },
           places: [
             {
               function: f.name,
-              presentation: `normal`
+              presentation: f.annotations?.["presentation"] ?? 'default',
+              layout:{
+                size: 1
+              }
             }
           ]
         };
@@ -53,7 +56,37 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
     return [m, re];
   }
 }
-
+export class PageDefaultLayoutWeaver implements ModelWeaver {
+  name = "defaultLayout";
+  weave(model: Model): [Model, ModelWeaveLog[]] {
+    const pages = withPresentationModel(model)?.pageModel.pages;
+    if (pages) {
+      let logs: ModelWeaveLog[] = [];
+      pages.forEach(page => {
+        if (!page.layout) {
+          page.layout = { grid: 1 };
+          logs.push(
+            new ModelWeaveLog(`pages/${page.name}`, `set default layout`)
+          );
+        }
+        page.places.forEach(place => {
+          if (!place.layout) {
+            place.layout = { size: 1 };
+            logs.push(
+              new ModelWeaveLog(
+                `pages/${page.name}`,
+                `set default layout for place ${place.function}`
+              )
+            );
+          }
+        });
+      });
+      return [model, logs];
+    } else {
+      return [model, []];
+    }
+  }
+}
 export class PageSortWeaver implements ModelWeaver {
   name = "sortPage";
   weave(model: Model): [Model, ModelWeaveLog[]] {
@@ -72,4 +105,8 @@ export class PageSortWeaver implements ModelWeaver {
   }
 }
 
-export const pageWeavers = [new OneFunctionPagesWeaver(), new PageSortWeaver()];
+export const pageWeavers = [
+  new OneFunctionPagesWeaver(),
+  new PageDefaultLayoutWeaver(),
+  new PageSortWeaver()
+];

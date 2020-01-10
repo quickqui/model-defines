@@ -1,8 +1,7 @@
-
 export {
-    withExchangeModel,
-    WithExchangeModel,
-    ExchangeModel,
-    Exchange,
+  withExchangeModel,
+  WithExchangeModel,
+  ExchangeModel,
+  Exchange,
+  exchanges
 } from "./ExchangeModel";
-

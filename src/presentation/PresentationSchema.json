@@ -50,8 +50,7 @@
         }
       },
       "required": [
-        "property",
-        "rules"
+        "property"
       ],
       "type": "object"
     },

@@ -29,21 +29,6 @@
           },
           "type": "object"
         },
-        "entry": {
-          "additionalProperties": false,
-          "properties": {
-            "icon": {
-              "type": "string"
-            },
-            "menuPath": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "menuPath"
-          ],
-          "type": "object"
-        },
         "extend": {
           "$ref": "#/definitions/Extend"
         },

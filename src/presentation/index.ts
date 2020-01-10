@@ -3,7 +3,8 @@ export {
   PageModel,
   Page,
   Place,
-  withPresentationModel
+  withPresentationModel,
+  pages
 } from "./PageModel";
 
 export { PresentationModel, Presentation ,PropertyRule} from "./PresentationModel";
