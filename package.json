@@ -1,7 +1,8 @@
 {
   "name": "@quick-qui/model-defines",
   "version": "2.2.0",
-  "description": "",
+  "description": "basic model defines",
+  "repository": "https://github.com/quickqui/model-defines",
   "main": "dist/index.js",
   "files": [
     "dist",
@@ -14,15 +15,15 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^14.5.0",
-    "@quick-qui/model-core": "^2.0.2",
+    "@quick-qui/model-core": "^2.0.3",
     "@types/hapi__joi": "^15.0.4",
     "@types/lodash": "^4.14.148",
-    "@types/ramda": "^0.26.34",
+    "@types/ramda": "^0.26.39",
     "enjoi": "^6.0.0",
     "lodash": "^4.17.15",
     "merge-options": "^2.0.0",
     "ramda": "^0.26.1",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "devDependencies": {
     "ts-json-schema-generator": "^0.56.0"
