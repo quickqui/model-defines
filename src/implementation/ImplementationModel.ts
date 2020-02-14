@@ -1,6 +1,8 @@
 import { Model } from "@quick-qui/model-core";
-import { WithNamespace } from "../BaseDefine";
+import { WithNamespace, StringKeyObject } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
+
+
 
 export function withImplementationModel(
   model: Model
@@ -20,10 +22,12 @@ export interface ImplementationModel {
   implementations: Implementation[];
 }
 
-export interface Implementation extends WithAnnotations,  WithNamespace{
-  lifeCycle?: { [key: string]: any };
-  parameters?: { [key: string]: any };
-  injections?: string[]
+export interface Implementation extends WithAnnotations, WithNamespace {
+  lifeCycle?: StringKeyObject;
+  parameters?: StringKeyObject;
+  injections?: string[];
+  runtime: string;
+  env?: StringKeyObject;
 }
 
 //TODO 草稿，不一定需要。

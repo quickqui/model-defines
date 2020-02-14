@@ -11,6 +11,9 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
+        "env": {
+          "$ref": "#/definitions/StringKeyObject"
+        },
         "injections": {
           "items": {
             "type": "string"
@@ -18,7 +21,7 @@
           "type": "array"
         },
         "lifeCycle": {
-          "type": "object"
+          "$ref": "#/definitions/StringKeyObject"
         },
         "name": {
           "type": "string"
@@ -27,12 +30,16 @@
           "type": "string"
         },
         "parameters": {
-          "type": "object"
+          "$ref": "#/definitions/StringKeyObject"
+        },
+        "runtime": {
+          "type": "string"
         }
       },
       "required": [
         "name",
-        "namespace"
+        "namespace",
+        "runtime"
       ],
       "type": "object"
     },
