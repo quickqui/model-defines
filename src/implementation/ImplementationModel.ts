@@ -2,8 +2,6 @@ import { Model } from "@quick-qui/model-core";
 import { WithNamespace, StringKeyObject } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
 
-
-
 export function withImplementationModel(
   model: Model
 ): WithImplementationModel | undefined {
@@ -20,6 +18,7 @@ export interface WithImplementationModel {
 
 export interface ImplementationModel {
   implementations: Implementation[];
+  env?: StringKeyObject;
 }
 
 export interface Implementation extends WithAnnotations, WithNamespace {
