@@ -1,0 +1,10 @@
+implementations:
+  - name: default-back-dev
+    abstract: true
+    injections: [dataProvider, env]
+    runtime: command
+    parameters:
+      path: "../app-server"
+      command: "npm"
+      args: ["start"]
+  

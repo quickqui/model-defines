@@ -1,6 +1,7 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { WithImplementationModel } from "./ImplementationModel";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
+import { ImplementationExtendWeaver } from "./ExtendWeaver";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -14,7 +15,7 @@ const define = {
     return deepMerge(model, {
       implementationModel: {
         implementations: withBuildingContext(
-          withNamespace(piece.implementations??[], buildingContext),
+          withNamespace(piece.implementations ?? [], buildingContext),
           buildingContext
         )
       }
@@ -27,6 +28,6 @@ const define = {
   validateAfterWeave(model: Model): ValidateError[] {
     return [];
   },
-  weavers: []
+  weavers: [new ImplementationExtendWeaver()]
 };
 export default define;

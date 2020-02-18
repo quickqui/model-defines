@@ -17,5 +17,5 @@ export {
   REF_RESOLVE,
   REF_REST,
   REF_PROVIDED,
-  parseRefWithProtocolInsure
+  parseRefWithProtocolInsure,withoutAbstract
 } from "./BaseDefine";

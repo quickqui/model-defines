@@ -1,5 +1,5 @@
 import { Model } from "@quick-qui/model-core";
-import { WithNamespace, StringKeyObject } from "../BaseDefine";
+import { WithNamespace, StringKeyObject, Extend, Extendable, WithParameters } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
 
 export function withImplementationModel(
@@ -21,9 +21,12 @@ export interface ImplementationModel {
   env?: StringKeyObject;
 }
 
-export interface Implementation extends WithAnnotations, WithNamespace {
+export interface Implementation
+  extends WithAnnotations,
+    WithNamespace,
+    Extendable,
+    WithParameters {
   lifeCycle?: StringKeyObject;
-  parameters?: StringKeyObject;
   injections?: string[];
   runtime: string;
   env?: StringKeyObject;

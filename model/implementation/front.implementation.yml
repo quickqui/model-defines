@@ -1,0 +1,15 @@
+implementations:
+  - name: default-web-front-dev
+    abstract: true
+    # runtime: docker
+    # parameters:
+    #   image: 'quickqui/front:latest'
+    runtime: command
+    
+    env:
+      #TODO Env.ts的东西可以搬到这里来。
+    parameters:
+      #TODO path 不是一个理想的，依赖于环境。应该仅用于开发。
+      path: "../front"
+      command: "npm"
+      args: ["run-script", "start-without-clean"]

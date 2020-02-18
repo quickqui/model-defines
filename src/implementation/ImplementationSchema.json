@@ -8,6 +8,9 @@
     "Implementation": {
       "additionalProperties": false,
       "properties": {
+        "abstract": {
+          "type": "boolean"
+        },
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },

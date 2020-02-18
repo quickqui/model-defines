@@ -42,6 +42,15 @@ export interface WithNamespace {
   name: string;
 }
 
+export interface Extendable {
+  abstract?: boolean;
+  extend?: Extend;
+}
+
+export interface WithParameters {
+  parameters?: StringKeyObject;
+}
+
 //NOTE 把目标拉入到自己中，目标还在，其他人还可以用，但一般不会最终出现在business中，类似于目标是abstract=true
 export type Extend = Ref;
 //NOTE 将自己注入到目标中，自己一般就不要了。
@@ -102,4 +111,10 @@ export function getNameInsureCategory(
   insureCategory: string
 ): string {
   return getNameWithCategory(ref, insureCategory).name;
+}
+
+export function withoutAbstract<T extends { abstract?: boolean }>(
+  units: T[] | undefined
+): T[] {
+  return (units ?? []).filter(unit => (unit?.abstract ?? false) != true);
 }

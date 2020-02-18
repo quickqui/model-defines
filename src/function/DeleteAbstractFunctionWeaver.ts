@@ -3,7 +3,7 @@ import { WithFunctionModel, withFunctionModel } from "./FunctionModel";
 
 
 export const deleteAbstractFunctionsOrder = 10000
-
+//NOTE 不要了，还是在使用的时候过滤abstract
 export class DeleteAbstractFunctionWeaver implements ModelWeaver {
          name = "deleteAbstractFunctions";
          order = deleteAbstractFunctionsOrder;

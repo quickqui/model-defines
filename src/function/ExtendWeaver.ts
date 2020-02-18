@@ -3,8 +3,8 @@ import { WithFunctionModel, FunctionModel, Function } from "./FunctionModel";
 import { getNameInsureCategory } from "../BaseDefine";
 import _ = require("lodash");
 
-export class ExtendWeaver implements ModelWeaver {
-  name = "extend";
+export class FunctionExtendWeaver implements ModelWeaver {
+  name = "functionExtend";
   weave(model: Model): [Model, ModelWeaveLog[]] {
     const logs: ModelWeaveLog[] = [];
     const m = model as Model & WithFunctionModel;
