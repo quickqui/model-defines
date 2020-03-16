@@ -18,12 +18,12 @@
     "@quick-qui/model-core": "^2.0.3",
     "@types/hapi__joi": "^15.0.4",
     "@types/lodash": "^4.14.148",
-    "@types/ramda": "^0.26.41",
+    "@types/ramda": "^0.26.44",
     "enjoi": "^6.0.1",
     "lodash": "^4.17.15",
     "merge-options": "^2.0.0",
     "ramda": "^0.26.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "ts-json-schema-generator": "^0.56.0"
