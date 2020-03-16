@@ -11,9 +11,6 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
-        "extension": {
-          "type": "string"
-        },
         "from": {
           "type": "string"
         },

@@ -29,8 +29,6 @@ export interface Exchange
   from: string;
   to: string; //externals, front, back, database,
   protocol: string; //dp, rest, grapghql
-  //TODO exchange的extension是用于实现的，不合适，考虑放到implementation模型。
-  extension?: string;
   resources: string[];
   order?: number;
 }

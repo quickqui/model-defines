@@ -5,6 +5,9 @@
     "Annotation": {
       "$ref": "#/definitions/StringKeyObject"
     },
+    "Extend": {
+      "$ref": "#/definitions/Ref"
+    },
     "Implementation": {
       "additionalProperties": false,
       "properties": {
@@ -14,8 +17,8 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
-        "env": {
-          "$ref": "#/definitions/StringKeyObject"
+        "extend": {
+          "$ref": "#/definitions/Extend"
         },
         "injections": {
           "items": {
@@ -45,6 +48,9 @@
         "runtime"
       ],
       "type": "object"
+    },
+    "Ref": {
+      "type": "string"
     },
     "StringKeyObject": {
       "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",

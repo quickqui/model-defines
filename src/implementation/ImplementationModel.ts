@@ -12,13 +12,14 @@ export function withImplementationModel(
   }
 }
 
+
+
 export interface WithImplementationModel {
   implementationModel: ImplementationModel;
 }
 
 export interface ImplementationModel {
   implementations: Implementation[];
-  env?: StringKeyObject;
 }
 
 export interface Implementation
@@ -29,7 +30,6 @@ export interface Implementation
   lifeCycle?: StringKeyObject;
   injections?: string[];
   runtime: string;
-  env?: StringKeyObject;
 }
 
 //TODO 草稿，不一定需要。

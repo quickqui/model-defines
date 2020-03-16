@@ -1,12 +1,10 @@
 implementations:
   - name: default-web-front-dev
     abstract: true
-    # runtime: docker
-    # parameters:
-    #   image: 'quickqui/front:latest'
     runtime: command
     parameters:
       #TODO path 不是一个理想的，依赖于环境。应该仅用于开发。
+      #TODO 相对于launcher 的相对目录，感觉怪怪的。
       path: "../front"
       command: "npm"
       args: ["run", "start-without-clean"]

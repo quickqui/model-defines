@@ -8,6 +8,7 @@ import {
 } from "./PageModel";
 import { deepMerge } from "../Merge";
 import { deleteAbstractFunctionsOrder } from "../function/DeleteAbstractFunctionWeaver";
+import { withoutAbstract } from "../BaseDefine";
 
 export class OneFunctionPagesWeaver implements ModelWeaver {
   name = "oneFunctionPage";
@@ -15,7 +16,7 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
 
   weave(model: Model): [Model, ModelWeaveLog[]] {
     let m = model as Model & WithFunctionModel & WithPresentationModel;
-    const functions = m.functionModel.functions;
+    const functions = withoutAbstract( m.functionModel.functions ??[]);
     //NOTE 没有entry的也要有。因为会被link到或者redirect到，等等。
     const re: ModelWeaveLog[] = [];
     functions.forEach(f => {
