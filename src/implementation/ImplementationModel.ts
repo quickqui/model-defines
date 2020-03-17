@@ -30,6 +30,7 @@ export interface Implementation
   lifeCycle?: StringKeyObject;
   injections?: string[];
   runtime: string;
+  env?: StringKeyObject
 }
 
 //TODO 草稿，不一定需要。

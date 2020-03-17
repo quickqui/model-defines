@@ -17,6 +17,9 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
+        "env": {
+          "$ref": "#/definitions/StringKeyObject"
+        },
         "extend": {
           "$ref": "#/definitions/Extend"
         },
