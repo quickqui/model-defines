@@ -5,4 +5,4 @@ export {
     Implementation,
     Deployment
 } from "./ImplementationModel";
-export { implementationGlobal} from './ImplementationGlobal'
+export { implementationGlobal,runtimeGlobal} from './ImplementationGlobal'
