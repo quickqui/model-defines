@@ -1,7 +1,7 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { pageWeavers } from "./PageWeaver";
 import { WithPresentationModel } from "./PageModel";
-import { deepMerge, withNamespace } from "../Merge";
+import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 import { PageValidator } from "./PageValidator";
 
 const define = {
@@ -15,7 +15,7 @@ const define = {
   ): Model {
     return deepMerge(model, {
       pageModel: {
-        pages: withNamespace(piece.pages ?? [], buildingContext)
+        pages:  withBuildingContext( withNamespace(piece.pages ?? [], buildingContext),buildingContext)
       }
     });
   },

@@ -1,5 +1,5 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
-import { deepMerge, withNamespace } from "../Merge";
+import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 import { PresentationValidator } from './PresentationValidator';
 
 const define = {
@@ -9,7 +9,7 @@ const define = {
   merge(model: Model, piece: any, buildingContext: any): Model {
     return deepMerge(model, {
       presentationModel: {
-        presentations: withNamespace(piece.presentations??[], buildingContext)
+        presentations: withBuildingContext( withNamespace(piece.presentations??[], buildingContext),buildingContext)
       }
     });
   },

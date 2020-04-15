@@ -9,7 +9,7 @@ export function withNamespace<T>(objArray: T[], buildingContext: any): T[] {
   const namespace: string = buildingContext?.["modelFile"]?.path;
   return objArray.map(obj => deepMerge(obj, { namespace }));
 }
-
+//TODO building context 极大增加了model的size，需要优化。比如相同的提出来，现场仅保存指针。
 export function withBuildingContext<T>(
   objArray: T[],
   buildingContext: any

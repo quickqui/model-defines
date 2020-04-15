@@ -3,7 +3,7 @@ import { Model, ValidateError } from "@quick-qui/model-core";
 import _ from "lodash";
 import { domainWeavers } from "./DomainWeavers";
 import { DomainValidator } from "./DomainValidator";
-import { deepMerge, withNamespace } from "../Merge";
+import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 
 interface DomainPiece {
   entities: Entity[];
@@ -21,9 +21,12 @@ const domainDefine = {
   ): Model {
     return deepMerge(model, {
       domainModel: {
-        entities: withNamespace(piece.entities??[], buildingContext),
-        enums: withNamespace(piece.enums??[], buildingContext)
-      }
+        entities: withBuildingContext(withNamespace(
+          piece.entities ?? [],
+          buildingContext
+        ),buildingContext),
+        enums:withBuildingContext( withNamespace(piece.enums ?? [], buildingContext),buildingContext)
+      },
     });
   },
   validateAfterMerge(model: Model): ValidateError[] {
