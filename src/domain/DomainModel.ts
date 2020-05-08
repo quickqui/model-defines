@@ -19,14 +19,14 @@ export interface DomainModel {
   enums: Enum[];
 }
 
-/*TODO 如何支持，动态的属性？多种子类？
+/*MARK 如何支持，动态的属性？多种子类？
   不同的子类型有不同的属性。
 */
 
 export interface Entity extends WithAnnotations, WithNamespace {
   properties: Property[];
   //inject 是推模式，当前定义注入到之前模式，当前定义最终不生效。
-  //TODO 考虑是否要拉模式
+  //MARK 考虑是否需要拉模式
   inject?: Inject;
 }
 

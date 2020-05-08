@@ -2,7 +2,7 @@ import _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
 
-//TODO 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
+//IDEA 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
 // 倾向于让具体的define自己处理，比如 -
 /*
     properties: 
