@@ -1,6 +1,6 @@
 {
   "name": "@quick-qui/model-defines",
-  "version": "2.4.4",
+  "version": "2.4.5",
   "description": "basic model defines",
   "repository": "https://github.com/quickqui/model-defines",
   "main": "dist/index.js",
