@@ -1,17 +1,27 @@
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
 import { getNameInsureCategory } from "../BaseDefine";
 import _ = require("lodash");
-import { WithImplementationModel, ImplementationModel, Implementation } from ".";
+import {
+  WithImplementationModel,
+  ImplementationModel,
+  Implementation,
+} from ".";
 
 export class ImplementationExtendWeaver implements ModelWeaver {
   name = "implementationExtend";
   weave(model: Model): [Model, ModelWeaveLog[]] {
     const logs: ModelWeaveLog[] = [];
     const m = model as Model & WithImplementationModel;
-    m.implementationModel.implementations.forEach(imp => {
+    m.implementationModel.implementations.forEach((imp) => {
       if (imp.extend) {
-        const extendTargetName = getNameInsureCategory(imp.extend, "implementations");
-        const extendTarget = getImplementation(m.implementationModel, extendTargetName);
+        const extendTargetName = getNameInsureCategory(
+          imp.extend,
+          "implementations"
+        );
+        const extendTarget = getImplementation(
+          m.implementationModel,
+          extendTargetName
+        );
         if (!extendTarget) {
           logs.push(
             //TODO 这里应该是validate log？
@@ -20,7 +30,8 @@ export class ImplementationExtendWeaver implements ModelWeaver {
               `no extend implementation find, expected - ${extendTargetName}`
             )
           );
-        } else {
+        } //TODO else if(extendTarget.abstract !== true) logs push ()
+        else {
           const index = _(m.implementationModel.implementations).findIndex(
             (i: Implementation) => imp.name === i.name
           );
@@ -44,9 +55,14 @@ function doExtend(sub: Implementation, base: Implementation): Implementation {
     ...base,
     ...sub,
     abstract: false,
-    annotations: { ...base.annotations, ...sub.annotations }
+    env: { ...base.env, ...sub.env },
+    parameters: { ...base.parameters, ...sub.parameters },
+    annotations: { ...base.annotations, ...sub.annotations },
   };
 }
-function getImplementation(m: ImplementationModel, name: string): Implementation | undefined {
-  return m.implementations.find(imp => imp.name === name);
+function getImplementation(
+  m: ImplementationModel,
+  name: string
+): Implementation | undefined {
+  return m.implementations.find((imp) => imp.name === name);
 }
