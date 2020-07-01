@@ -1,9 +1,0 @@
-implementations:
-  - name: default-web-front-dev
-    abstract: true
-    runtime: command
-    parameters:
-      #NOTE 应该仅用于开发。
-      path: "../front"
-      command: "npm"
-      args: ["run", "start-without-clean"]
