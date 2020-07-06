@@ -15,18 +15,18 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^14.5.0",
-    "@quick-qui/model-core": "^2.0.3",
+    "@quick-qui/model-core": "^2.1.0",
     "@types/hapi__joi": "^15.0.4",
-    "@types/lodash": "^4.14.148",
+    "@types/lodash": "^4.14.157",
     "@types/ramda": "^0.26.44",
-    "enjoi": "^6.0.1",
+    "enjoi": "^6.0.2",
     "lodash": "^4.17.15",
     "merge-options": "^2.0.0",
     "ramda": "^0.26.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
-    "@types/node": "^13.9.1",
+    "@types/node": "^13.13.12",
     "ts-json-schema-generator": "^0.56.0"
   }
 }

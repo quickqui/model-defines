@@ -20,7 +20,7 @@ export class FunctionExtendWeaver implements ModelWeaver {
             //TODO 这里应该是validate log？
             new ModelWeaveLog(
               `functions/${fun.name}`,
-              `no extend function find, expected - ${extendTargetName}`
+              `no extend function find, expected - ${extendTargetName}`,true
             )
           );
           

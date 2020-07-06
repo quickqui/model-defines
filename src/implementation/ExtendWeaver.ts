@@ -27,7 +27,7 @@ export class ImplementationExtendWeaver implements ModelWeaver {
             //TODO 这里应该是validate log？
             new ModelWeaveLog(
               `implementations/${imp.name}`,
-              `no extend implementation find, expected - ${extendTargetName}`
+              `no extend implementation find, expected - ${extendTargetName}`,true
             )
           );
         } //TODO else if(extendTarget.abstract !== true) logs push ()
