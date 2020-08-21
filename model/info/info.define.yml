@@ -1,0 +1,4 @@
+defines:
+  - name: info
+    filePattern: "**/**.@(info|infoModel|infos).yml"
+    define: 'resolve:info/InfoDefine' 

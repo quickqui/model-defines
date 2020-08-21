@@ -5,3 +5,5 @@ export {
     Function,
     functions
 } from "./FunctionModel";
+
+export { FunctionDefineHelper} from './defineHelpers'

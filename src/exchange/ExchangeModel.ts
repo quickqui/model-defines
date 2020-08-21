@@ -1,5 +1,5 @@
 import { Model } from "@quick-qui/model-core";
-import { StringKeyObject, WithNamespace, WithParameters } from "../BaseDefine";
+import { WithNamespace, WithParameters } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
 
 export function withExchangeModel(model: Model): WithExchangeModel | undefined {
@@ -13,7 +13,9 @@ export function withExchangeModel(model: Model): WithExchangeModel | undefined {
 export function exchanges(model: Model): Exchange[] {
   return withExchangeModel(model)?.exchangeModel?.exchanges ?? [];
 }
-
+/**
+ * @deprecated 使用info model。
+ */
 export interface WithExchangeModel {
   exchangeModel: ExchangeModel;
 }

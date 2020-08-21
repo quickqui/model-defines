@@ -1,0 +1,58 @@
+{
+  "$ref": "#/definitions/Info",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Annotation": {
+      "$ref": "#/definitions/StringKeyObject"
+    },
+    "Info": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "$ref": "#/definitions/Annotation"
+        },
+        "events": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "init": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string"
+        },
+        "parameters": {
+          "$ref": "#/definitions/StringKeyObject"
+        },
+        "resources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "namespace",
+        "scope",
+        "type"
+      ],
+      "type": "object"
+    },
+    "StringKeyObject": {
+      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
+      "type": "object"
+    }
+  }
+}
