@@ -1,4 +1,4 @@
-import { REF_REST } from './BaseDefine';
+import { REF_REST } from "./BaseDefine";
 export * from "./domain";
 export * from "./function";
 export * from "./implementation";
@@ -19,5 +19,6 @@ export {
   REF_RESOLVE,
   REF_REST,
   REF_PROVIDED,
-  parseRefWithProtocolInsure,withoutAbstract
+  parseRefWithProtocolInsure,
+  withoutAbstract,
 } from "./BaseDefine";

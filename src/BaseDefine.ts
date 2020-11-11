@@ -60,6 +60,7 @@ export const REF_INTERNAL = "internal";
 export const REF_RESOLVE = "resolve";
 export const REF_REST = "rest";
 export const REF_PROVIDED = "provided";
+export const REF_INFO = "info";
 
 export interface RefObject {
   protocol: string | undefined;

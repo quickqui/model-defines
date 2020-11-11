@@ -1,18 +1,48 @@
 import { WithAnnotations } from "../Annotation";
-import { StringKeyObject, WithNamespace, WithParameters } from "../BaseDefine";
+import {
+  StringKeyObject,
+  WithNamespace,
+  WithParameters,
+  Ref,
+  parseRef,
+} from "../BaseDefine";
 import { Model } from "@quick-qui/model-core";
+
+export function parseExpr(
+  ref: string
+): { scope: string | undefined; name: string; paths: string[] | undefined } {
+  const ro = parseRef(ref);
+  // info:session/selected.id
+  const [path, scope] = ro.path.split("/").reverse(); // scope is optional
+  const [name, ...paths] = path.split(".");
+  return { scope, name, paths };
+}
+
+export function findInfo(
+  model: WithInfoModel,
+  scope: string | undefined,
+  name: string
+): Info | undefined {
+  if (scope !== undefined) {
+    return model.infoModel.infos.find(
+      (info) => info.scope === scope && info.name === name
+    );
+  } else {
+    return model.infoModel.infos.find((info) => info.name === name);
+  }
+}
 
 export interface Info extends WithAnnotations, WithNamespace, WithParameters {
   scope: string; // global? domain session config page local
   type: string; // resource event
   resources?: string[];
   events?: string[];
-  init?: object
+  init?: object;
 
   //annotations:
   // - implementation:
   // - - at: front\back
-  // - - source: resolve/storage/rest/graphQl/fake, 
+  // - - source: resolve/storage/rest/graphQl/fake,
   //TODO config/session的source是啥？
   // - - fakeData:...
   // - - order
