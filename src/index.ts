@@ -21,4 +21,5 @@ export {
   REF_PROVIDED,
   parseRefWithProtocolInsure,
   withoutAbstract,
+  parseExpr
 } from "./BaseDefine";

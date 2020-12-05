@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
+import { uri } from "@quick-qui/util";
 
 //IDEA 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
 // 倾向于让具体的define自己处理，比如 -
@@ -66,7 +67,9 @@ export interface RefObject {
   protocol: string | undefined;
   path: string;
 }
-
+/*
+  protocol:path
+ */
 export function parseRef(ref: Ref): RefObject {
   const parts = ref.split(":");
   if (parts.length === 1) {
@@ -86,6 +89,9 @@ export function parseRefWithProtocolInsure(
   if (protocolInsure === re.protocol) return re;
   throw new Error(`Invalid protocol - ${re.protocol}`);
 }
+/**
+  category/name
+ */
 export function getNameWithCategory(
   ref: Ref,
   insureCategory?: string
@@ -114,8 +120,19 @@ export function getNameInsureCategory(
   return getNameWithCategory(ref, insureCategory).name;
 }
 
+/*
+ schema:name/p/a/t/h
+ */
+export function parseExpr(
+  ref: string
+): { scheme: string | undefined; name: string; paths: string[] | undefined } {
+  const re = uri.parse(ref, undefined);
+  const [name, ...paths] = re.path!;
+  return { scheme: re.scheme, name, paths };
+}
+
 export function withoutAbstract<T extends { abstract?: boolean }>(
   units: T[] | undefined
 ): T[] {
-  return (units ?? []).filter(unit => (unit?.abstract ?? false) != true);
+  return (units ?? []).filter((unit) => (unit?.abstract ?? false) != true);
 }

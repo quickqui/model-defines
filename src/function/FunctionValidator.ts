@@ -4,7 +4,6 @@ import {
   FunctionModel,
   withFunctionModel
 } from "./FunctionModel";
-import "../Util";
 import { getNameInsureCategory } from "../BaseDefine";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";

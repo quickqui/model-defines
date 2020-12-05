@@ -8,15 +8,7 @@ import {
 } from "../BaseDefine";
 import { Model } from "@quick-qui/model-core";
 
-export function parseExpr(
-  ref: string
-): { scope: string | undefined; name: string; paths: string[] | undefined } {
-  const ro = parseRef(ref);
-  // info:session/selected.id
-  const [path, scope] = ro.path.split("/").reverse(); // scope is optional
-  const [name, ...paths] = path.split(".");
-  return { scope, name, paths };
-}
+
 
 export function findInfo(
   model: WithInfoModel,

@@ -1,6 +1,5 @@
 import { ModelValidator, Model, ValidateError } from "@quick-qui/model-core";
 import { withExchangeModel, ExchangeModel } from "./ExchangeModel";
-import "../Util";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
 import schema from "./ExchangeSchema.json";
