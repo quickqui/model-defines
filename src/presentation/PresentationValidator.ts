@@ -7,7 +7,7 @@ import * as joi from "@hapi/joi";
 
 export class PresentationValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    return withPresentationModel(model)?.presentationModel?.p(bySchema) ?? [];
+    return withPresentationModel(model)?.presentationModel?.applyTo(bySchema) ?? [];
   }
 }
 

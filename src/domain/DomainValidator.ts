@@ -16,7 +16,7 @@ export class DomainValidator implements ModelValidator {
 
     return [
       ...injectValidate(model),
-      ...(withDomainModel(model)?.domainModel?.p(bySchema) ?? [])
+      ...(withDomainModel(model)?.domainModel?.applyTo(bySchema) ?? [])
     ];
   }
 }

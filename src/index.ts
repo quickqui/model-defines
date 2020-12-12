@@ -1,4 +1,3 @@
-import { REF_REST } from "./BaseDefine";
 export * from "./domain";
 export * from "./function";
 export * from "./implementation";
@@ -21,5 +20,6 @@ export {
   REF_PROVIDED,
   parseRefWithProtocolInsure,
   withoutAbstract,
-  parseExpr
+  
 } from "./BaseDefine";
+export { parseExpr,evaluate,evaluateInObject} from './Exprs'

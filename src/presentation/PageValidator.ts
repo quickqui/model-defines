@@ -9,7 +9,7 @@ import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     return (pageFunctionExistsValidator(model) ?? []).concat(
-      withPresentationModel(model)?.pageModel?.p(bySchema) ?? []
+      withPresentationModel(model)?.pageModel?.applyTo(bySchema) ?? []
     );
   }
 }

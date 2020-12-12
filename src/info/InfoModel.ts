@@ -8,8 +8,6 @@ import {
 } from "../BaseDefine";
 import { Model } from "@quick-qui/model-core";
 
-
-
 export function findInfo(
   model: WithInfoModel,
   scope: string | undefined,
@@ -29,9 +27,10 @@ export interface Info extends WithAnnotations, WithNamespace, WithParameters {
   type: string; // resource event
   resources?: string[];
   events?: string[];
-  init?: object;
+  default?: object;
+  overwrite?: object;
 
-  //annotations:
+  //annotations: 
   // - implementation:
   // - - at: front\back
   // - - source: resolve/storage/rest/graphQl/fake,

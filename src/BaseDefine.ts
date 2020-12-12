@@ -1,7 +1,6 @@
 import _ from "lodash";
 import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
-import { uri } from "@quick-qui/util";
 
 //IDEA 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。
 // 倾向于让具体的define自己处理，比如 -
@@ -118,17 +117,6 @@ export function getNameInsureCategory(
   insureCategory: string
 ): string {
   return getNameWithCategory(ref, insureCategory).name;
-}
-
-/*
- schema:name/p/a/t/h
- */
-export function parseExpr(
-  ref: string
-): { scheme: string | undefined; name: string; paths: string[] | undefined } {
-  const re = uri.parse(ref, undefined);
-  const [name, ...paths] = re.path!;
-  return { scheme: re.scheme, name, paths };
 }
 
 export function withoutAbstract<T extends { abstract?: boolean }>(

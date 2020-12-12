@@ -7,7 +7,7 @@ export class InfoValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
-    return withInfoModel(model)?.infoModel?.p(bySchema) ?? [];
+    return withInfoModel(model)?.infoModel?.applyTo(bySchema) ?? [];
   }
 }
 const s = enjoi.schema(schema);

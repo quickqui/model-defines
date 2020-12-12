@@ -9,13 +9,14 @@ import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
 import schema from "./FunctionSchema.json";
 import _ from "lodash";
+import '@quick-qui/util/dist/extensions'
 export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
     return [
       ...extendValidate(model),
-      ...(withFunctionModel(model)?.functionModel?.p(bySchema) ?? [])
+      ...(withFunctionModel(model)?.functionModel?.applyTo(bySchema) ?? [])
     ];
   }
 }
