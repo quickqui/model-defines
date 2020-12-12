@@ -1,4 +1,4 @@
-import { getNameWithCategory, parseRef, parseExpr } from "./BaseDefine";
+import { getNameWithCategory, parseRef } from "./BaseDefine";
 /*
  category?/name
  */
@@ -26,16 +26,4 @@ test("no protocol", () => {
   expect(re.path).toEqual("path");
 });
 
-test("exprs", () => {
-  const re = parseExpr("scheme:name/pa/th");
-  expect(re.scheme).toEqual("scheme");
-  expect(re.name).toEqual("name");
-  expect(re.paths).toEqual(["pa", "th"]);
-});
 
-test("exprs without path", () => {
-  const re = parseExpr("scheme:name");
-  expect(re.scheme).toEqual("scheme");
-  expect(re.name).toEqual("name");
-  expect(re.paths).toEqual([]);
-});
