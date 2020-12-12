@@ -56,7 +56,7 @@
       "type": "string"
     },
     "StringKeyObject": {
-      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
+      "description": "abstract name ref extend inject resource extension parameters annotations order",
       "type": "object"
     }
   }

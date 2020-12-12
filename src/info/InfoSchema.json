@@ -11,20 +11,23 @@
         "annotations": {
           "$ref": "#/definitions/Annotation"
         },
+        "default": {
+          "type": "object"
+        },
         "events": {
           "items": {
             "type": "string"
           },
           "type": "array"
         },
-        "init": {
-          "type": "object"
-        },
         "name": {
           "type": "string"
         },
         "namespace": {
           "type": "string"
+        },
+        "overwrite": {
+          "type": "object"
         },
         "parameters": {
           "$ref": "#/definitions/StringKeyObject"
@@ -51,7 +54,7 @@
       "type": "object"
     },
     "StringKeyObject": {
-      "description": "abstract\nname\nref\nextend inject\nresource\nextension\nparameters\nannotations\norder",
+      "description": "abstract name ref extend inject resource extension parameters annotations order",
       "type": "object"
     }
   }
