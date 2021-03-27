@@ -17,9 +17,9 @@ export function parseExpr(
 export function evaluate(
   model: Model | undefined,
   context: object,
-  matchedResult: string[]
+  matchedResult: RegExpExecArray
 ): any {
-  const { scheme, name, paths } = parseExpr(matchedResult[1]);
+  const { scheme, name, paths } = parseExpr((matchedResult)[1]);
   if (scheme === "info") {
     if (model) {
       const withInfo = withInfoModel(model);

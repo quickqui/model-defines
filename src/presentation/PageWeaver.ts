@@ -43,7 +43,10 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
                 size: 1
               }
             }
-          ]
+          ],
+          annotations:{
+            generated:true
+          }
         };
         re.push(
           new ModelWeaveLog(
