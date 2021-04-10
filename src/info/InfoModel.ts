@@ -23,7 +23,7 @@ export function findInfo(
 }
 
 export interface Info extends WithAnnotations, WithNamespace, WithParameters {
-  scope: string; // global? domain session config page local
+  scope: string; // global? domain session config page local model
   type: string; // resource event
   resources?: string[];
   events?: string[];

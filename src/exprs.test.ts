@@ -15,24 +15,13 @@ test("exprs without path", () => {
   expect(re.paths).toEqual([]);
 });
 
-test("evaluated", () => {
+test("evaluated in object", async () => {
+  expect.hasAssertions();
   const obj = {
     id: 1,
     value: "${value}",
   };
-  const newObj = replaceInObject(obj, /\$\{(.*)\}/, (result) =>
-    evaluate(undefined, { value: "value" }, result)
-  );
-  expect(newObj.id).toEqual(1);
-  expect(newObj.value).toEqual("value");
-});
-
-test("evaluated in object", () => {
-  const obj = {
-    id: 1,
-    value: "${value}",
-  };
-  const newObj = evaluateInObject(obj, undefined, { value: "value" });
-  expect(newObj.id).toEqual(1);
-  expect(newObj.value).toEqual("value");
+  const newObj = (await evaluateInObject(obj, { value: "value" }))[0];
+  expect(newObj["id"]).toEqual(1);
+  expect(newObj["value"]).toEqual("value");
 });
