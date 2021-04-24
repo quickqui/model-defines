@@ -1,6 +1,6 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
-import { InfoValidator } from "./InfoValidator";
+import { InfoValidator, resourceRefEntity } from "./InfoValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -10,10 +10,10 @@ const define = {
     return deepMerge(model, {
       infoModel: {
         infos: withBuildingContext(
-          withNamespace(piece.infos??[], buildingContext),
+          withNamespace(piece.infos ?? [], buildingContext),
           buildingContext
-        )
-      }
+        ),
+      },
     });
   },
 
@@ -21,8 +21,8 @@ const define = {
     return new InfoValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
-    return [];
+    return resourceRefEntity(model);
   },
-  weavers: []
+  weavers: [],
 };
 export default define;

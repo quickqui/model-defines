@@ -1,8 +1,7 @@
 import _ from "lodash";
-import { WithFunctionModel } from "./FunctionModel";
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { functionWeavers } from "./FunctionWeavers";
-import { FunctionValidator } from "./FunctionValidator";
+import { FunctionValidator, resourceRefEntity } from "./FunctionValidator";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 
 const functionDefine = {
@@ -14,18 +13,18 @@ const functionDefine = {
     return deepMerge(model, {
       functionModel: {
         functions: withBuildingContext(
-          withNamespace(piece.functions??[], buildingContext),
+          withNamespace(piece.functions ?? [], buildingContext),
           buildingContext
-        )
-      }
+        ),
+      },
     });
   },
   validateAfterMerge(model: Model): ValidateError[] {
     return new FunctionValidator().validate(model);
   },
-  validateAfterWeave(): ValidateError[] {
-    return [];
+  validateAfterWeave(model: Model): ValidateError[] {
+    return resourceRefEntity(model);
   },
-  weavers: functionWeavers
+  weavers: functionWeavers,
 };
 export default functionDefine;

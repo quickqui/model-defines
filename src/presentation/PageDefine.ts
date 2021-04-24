@@ -2,7 +2,7 @@ import { Model, ValidateError } from "@quick-qui/model-core";
 import { pageWeavers } from "./PageWeaver";
 import { WithPresentationModel } from "./PageModel";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
-import { PageValidator } from "./PageValidator";
+import { PageValidator, pageFunctionExistsValidator } from "./PageValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -24,7 +24,7 @@ const define = {
     return new PageValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
-    return [];
+    return pageFunctionExistsValidator(model);
   },
   weavers: pageWeavers
 };

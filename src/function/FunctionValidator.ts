@@ -2,23 +2,35 @@ import { ModelValidator, Model, ValidateError } from "@quick-qui/model-core";
 import {
   existFunction,
   FunctionModel,
-  withFunctionModel
-} from "./FunctionModel";
+  withFunctionModel} from "./FunctionModel";
 import { getNameInsureCategory } from "../BaseDefine";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
 import schema from "./FunctionSchema.json";
 import _ from "lodash";
 import '@quick-qui/util/dist/extensions'
+import { existEntity, WithDomainModel } from "../domain/DomainModel";
 export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    let re: ValidateError[] = [];
-    //TODO 没有完全实现
     return [
       ...extendValidate(model),
       ...(withFunctionModel(model)?.functionModel?.applyTo(bySchema) ?? [])
     ];
   }
+}
+export function resourceRefEntity(model: Model): ValidateError[]{
+    const re: ValidateError[] = [];
+   
+    withFunctionModel(model)?.functionModel.functions.forEach(fun => {
+      if (!existEntity(model as WithDomainModel,fun.resource))
+        re.push(
+          new ValidateError(
+            `functions/${fun.name}`,
+            `no resource find - expect=${fun.resource}`
+          )
+        );
+    })
+    return re
 }
 
 function extendValidate(model: Model): ValidateError[] {
@@ -48,7 +60,7 @@ function bySchema(model: FunctionModel): ValidateError[] {
   return model.functions
     .filter(fun => !(fun.abstract === true))
     .map(fun => {
-      const { error, value } = joi.validate(fun, s, { abortEarly: false });
+      const { error } = joi.validate(fun, s, { abortEarly: false });
 
       return (
         error?.details.map(

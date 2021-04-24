@@ -8,13 +8,12 @@ import * as joi from "@hapi/joi";
 import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    return (pageFunctionExistsValidator(model) ?? []).concat(
-      withPresentationModel(model)?.pageModel?.applyTo(bySchema) ?? []
-    );
+    return withPresentationModel(model)?.pageModel?.applyTo(bySchema) ?? []
+
   }
 }
 
-function pageFunctionExistsValidator(model: Model): ValidateError[] {
+export function pageFunctionExistsValidator(model: Model): ValidateError[] {
   const fm = withFunctionModel(model);
   if (!fm) {
     if (withPresentationModel(model)?.pageModel?.pages?.length ?? 0 > 0) {
