@@ -92,6 +92,7 @@ export class PageDefaultLayoutWeaver implements ModelWeaver {
 }
 export class PageSortWeaver implements ModelWeaver {
   name = "sortPage";
+  order=1 //放在比较后面，确保在page generate的后面
   weave(model: Model): [Model, ModelWeaveLog[]] {
     const pages = withPresentationModel(model)?.pageModel.pages;
     if (pages) {
@@ -106,6 +107,7 @@ export class PageSortWeaver implements ModelWeaver {
       return [model, []];
     }
   }
+
 }
 
 export const pageWeavers = [

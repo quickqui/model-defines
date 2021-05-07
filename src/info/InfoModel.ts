@@ -1,10 +1,7 @@
 import { WithAnnotations } from "../Annotation";
 import {
-  StringKeyObject,
   WithNamespace,
   WithParameters,
-  Ref,
-  parseRef,
 } from "../BaseDefine";
 import { Model } from "@quick-qui/model-core";
 

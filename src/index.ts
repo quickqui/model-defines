@@ -22,4 +22,4 @@ export {
   withoutAbstract,
   
 } from "./BaseDefine";
-export { parseExpr,evaluate,evaluateInObject} from './Exprs'
+export { parseExpr,evaluate,evaluateInObject,findInfos,getEventNames} from './Exprs'
