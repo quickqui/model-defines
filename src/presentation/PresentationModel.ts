@@ -1,6 +1,3 @@
-import { Model } from "@quick-qui/model-core";
-import { withPresentationModel } from "./PageModel";
-import { Property } from "../domain/DomainModel";
 import { StringKeyObject, WithNamespace } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
 
@@ -20,7 +17,9 @@ export interface Presentation extends WithAnnotations, WithNamespace {
 
 export interface PropertyRule {
   property: string;
-  rules?: string[]; //hidden, masked, enabled/disabled, Component
+  //TODO 思考，fullWidth 之类的是否合适，fullWidth是ra支持的一个特殊属性
+  //没有太大的问题，在这里出现的本来就是一些比较局部和特殊的表述
+  rules?: string[]; //hidden, masked, enabled/disabled, fullWidth,Component
   order?: number;
 }
 

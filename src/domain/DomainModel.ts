@@ -48,7 +48,7 @@ export interface Enum extends WithAnnotations, WithNamespace {
   type: string;
 }
 
-type Constraint = string;
+type Constraint = string | [key: string, value: any];
 
 interface Relation {
   n: "one" | "many";
@@ -62,7 +62,7 @@ export function forEachEntity(
   const entities = model.domainModel!.entities;
   let logs: ModelWeaveLog[] = [];
   let newEntities: Entity[] = [];
-  entities.forEach(entity => {
+  entities.forEach((entity) => {
     let [en, log] = fun(entity);
     newEntities.push(en);
     if (log) logs = logs.concat(log);
@@ -72,10 +72,10 @@ export function forEachEntity(
       ...model,
       domainModel: {
         ...model.domainModel!,
-        entities: newEntities
-      }
+        entities: newEntities,
+      },
     },
-    logs
+    logs,
   ];
 }
 export function eachEntity<T>(
@@ -88,7 +88,7 @@ export function getEntity(
   model: Model & WithDomainModel,
   name: string
 ): Entity | undefined {
-  return model.domainModel!.entities.find(entity => {
+  return model.domainModel!.entities.find((entity) => {
     return entity.name === name;
   });
 }

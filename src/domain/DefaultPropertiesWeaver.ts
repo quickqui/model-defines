@@ -21,7 +21,7 @@ function defaultProperties(entity: Entity): [Entity, ModelWeaveLog[]] {
     return [
       _.assign(entity, {
         properties: entity.properties.concat([
-          { name: "id", type: "ID", constraints: ["required"] }
+          { name: "id", type: "ID", }//constraints: ["required"] }
           // { name: "createdAt", type: "DateTime", constraints: ["required"] },
           // { name: "updatedAt", type: "DateTime", constraints: ["required"] }
         ])

@@ -37,7 +37,7 @@ export class OneFunctionPagesWeaver implements ModelWeaver {
           places: [
             {
               function: f.name,
-              presentation: f.annotations?.["presentation"] ?? "default",
+              presentation: f.annotations?.["presentation"] ,
               layout: {
                 size: 1,
               },

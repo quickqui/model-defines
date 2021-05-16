@@ -16,5 +16,8 @@
         "statusBar.foreground": "#e7e7e7"
     },
     "peacock.color": "#300004",
-    "deepscan.enable": true
+    "deepscan.enable": true,
+    "files.watcherExclude": {
+        "**/target": true
+    }
 }
