@@ -3,7 +3,7 @@ import {
   existFunction,
   FunctionModel,
   withFunctionModel} from "./FunctionModel";
-import { getNameInsureCategory } from "../BaseDefine";
+import { getNameInsureCategory, withoutAbstract } from "../BaseDefine";
 import enjoi from "enjoi";
 import * as joi from "@hapi/joi";
 import schema from "./FunctionSchema.json";
@@ -20,16 +20,17 @@ export class FunctionValidator implements ModelValidator {
 }
 export function resourceRefEntity(model: Model): ValidateError[]{
     const re: ValidateError[] = [];
-   
-    withFunctionModel(model)?.functionModel.functions.forEach(fun => {
-      if (!existEntity(model as WithDomainModel,fun.resource))
-        re.push(
-          new ValidateError(
-            `functions/${fun.name}`,
-            `no resource find - expect=${fun.resource}`
-          )
-        );
-    })
+    withoutAbstract(withFunctionModel(model)?.functionModel.functions).forEach(
+      (fun) => {
+        if (!existEntity(model as WithDomainModel, fun.resource))
+          re.push(
+            new ValidateError(
+              `functions/${fun.name}`,
+              `no resource find - expect=${fun.resource}`
+            )
+          );
+      }
+    );
     return re
 }
 
