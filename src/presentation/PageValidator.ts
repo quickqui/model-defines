@@ -8,7 +8,7 @@ import * as joi from "@hapi/joi";
 import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
-    return withPresentationModel(model)?.pageModel?.applyTo(bySchema) ?? []
+    return withPresentationModel(model)?.pageModel?.q_applyTo(bySchema) ?? []
 
   }
 }

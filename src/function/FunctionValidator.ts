@@ -14,7 +14,7 @@ export class FunctionValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     return [
       ...extendValidate(model),
-      ...(withFunctionModel(model)?.functionModel?.applyTo(bySchema) ?? [])
+      ...(withFunctionModel(model)?.functionModel?.q_applyTo(bySchema) ?? [])
     ];
   }
 }

@@ -7,7 +7,7 @@ export class ExchangeValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     let re: ValidateError[] = [];
     //TODO 没有完全实现
-    return withExchangeModel(model)?.exchangeModel?.applyTo(bySchema) ?? [];
+    return withExchangeModel(model)?.exchangeModel?.q_applyTo(bySchema) ?? [];
   }
 }
 const s = enjoi.schema(schema);

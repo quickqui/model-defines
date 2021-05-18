@@ -11,7 +11,7 @@ export class InfoValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     return [
       ...resourceRefEntity(model),
-      ...(withInfoModel(model)?.infoModel?.applyTo(bySchema) ?? []),
+      ...(withInfoModel(model)?.infoModel?.q_applyTo(bySchema) ?? []),
     ];
   }
 }
