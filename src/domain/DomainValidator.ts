@@ -7,7 +7,6 @@ import {
 } from "./DomainModel";
 import { getNameInsureCategory } from "../BaseDefine";
 import enjoi from "enjoi";
-import * as joi from "@hapi/joi";
 import schema from "./EntitySchema.json";
 
 export class DomainValidator implements ModelValidator {
@@ -49,7 +48,7 @@ function injectValidate(model: Model): ValidateError[] {
 function bySchema(model: DomainModel): ValidateError[] {
   return model.entities
     .map(entity => {
-      const { error, value } = joi.validate(entity, s, { abortEarly: false });
+      const { error, value } = s.validate(entity,  { abortEarly: false });
 
       return (
         error?.details.map(detail => {

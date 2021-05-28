@@ -1,7 +1,6 @@
 import { ModelValidator, Model, ValidateError } from "@quick-qui/model-core";
 import { withInfoModel, InfoModel } from "./InfoModel";
 import enjoi from "enjoi";
-import * as joi from "@hapi/joi";
 import schema from "./InfoSchema.json";
 import {
   existEntity,
@@ -50,7 +49,7 @@ const s = enjoi.schema(schema);
 function bySchema(model: InfoModel): ValidateError[] {
   return model.infos
     .map((info) => {
-      const { error } = joi.validate(info, s, { abortEarly: false });
+      const { error } =s.validate(info, { abortEarly: false });
       return (
         error?.details.map(
           (detail) =>

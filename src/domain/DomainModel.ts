@@ -1,7 +1,7 @@
 import { ModelWeaveLog, Model } from "@quick-qui/model-core";
 import { WithAnnotations } from "../Annotation";
 import _ = require("lodash");
-import { Inject, WithNamespace } from "../BaseDefine";
+import { Inject, StringKeyObject, WithNamespace } from "../BaseDefine";
 
 export interface WithDomainModel {
   domainModel: DomainModel;
@@ -29,6 +29,7 @@ export interface Entity extends WithAnnotations, WithNamespace {
   //MARK 考虑是否需要拉模式
   inject?: Inject;
 }
+type Constraint = string | StringKeyObject;
 
 export interface Property {
   name: string;
@@ -48,7 +49,6 @@ export interface Enum extends WithAnnotations, WithNamespace {
   type: string;
 }
 
-type Constraint = string | [key: string, value: any];
 
 interface Relation {
   n: "one" | "many";

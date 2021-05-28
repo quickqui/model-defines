@@ -4,7 +4,6 @@ import { withFunctionModel } from "../function/FunctionModel";
 import _ from "lodash";
 
 import enjoi from "enjoi";
-import * as joi from "@hapi/joi";
 import schema from "./PageSchema.json";
 export class PageValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
@@ -47,7 +46,7 @@ const s = enjoi.schema(schema);
 function bySchema(model: PageModel): ValidateError[] {
   return (model.pages ?? [])
     .map(page => {
-      const { error, value } = joi.validate(page, s, { abortEarly: false });
+      const { error, value } =s.validate(page, { abortEarly: false });
       return (
         error?.details.map(
           detail =>

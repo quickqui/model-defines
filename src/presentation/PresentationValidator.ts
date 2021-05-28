@@ -3,7 +3,6 @@ import { withPresentationModel } from "./PageModel";
 import enjoi from "enjoi";
 import schema from "./PresentationSchema.json";
 import { PresentationModel } from "./PresentationModel";
-import * as joi from "@hapi/joi";
 
 export class PresentationValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
@@ -15,7 +14,7 @@ const s = enjoi.schema(schema);
 function bySchema(model: PresentationModel): ValidateError[] {
   return (model.presentations ?? [])
     .map(presentation => {
-      const { error, value } = joi.validate(presentation, s, {
+      const { error, value } = s.validate(presentation,  {
         abortEarly: false
       });
       return (

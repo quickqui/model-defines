@@ -2,6 +2,7 @@ import { Model, ValidateError } from "@quick-qui/model-core";
 import { WithImplementationModel } from "./ImplementationModel";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 import { ImplementationExtendWeaver } from "./ExtendWeaver";
+import { ImplementationValidator } from "./ImplementationValidator";
 
 const define = {
   validatePiece(piece: any): ValidateError[] {
@@ -23,7 +24,7 @@ const define = {
   },
 
   validateAfterMerge(model: Model): ValidateError[] {
-    return [];
+    return new ImplementationValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
     return [];

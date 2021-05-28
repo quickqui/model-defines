@@ -54,7 +54,14 @@
       "properties": {
         "constraints": {
           "items": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/definitions/StringKeyObject"
+              }
+            ]
           },
           "type": "array"
         },

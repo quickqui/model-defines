@@ -5,7 +5,6 @@ import {
   withFunctionModel} from "./FunctionModel";
 import { getNameInsureCategory, withoutAbstract } from "../BaseDefine";
 import enjoi from "enjoi";
-import * as joi from "@hapi/joi";
 import schema from "./FunctionSchema.json";
 import _ from "lodash";
 import '@quick-qui/util/dist/extensions'
@@ -61,7 +60,7 @@ function bySchema(model: FunctionModel): ValidateError[] {
   return model.functions
     .filter(fun => !(fun.abstract === true))
     .map(fun => {
-      const { error } = joi.validate(fun, s, { abortEarly: false });
+      const { error } = s.validate(fun, { abortEarly: false });
 
       return (
         error?.details.map(
