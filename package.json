@@ -22,7 +22,7 @@
     "@types/joi": "^17.2.3",
     "@types/lodash": "^4.14.170",
     "@types/ramda": "^0.27.40",
-    "enjoi": "^9.0.0",
+    "enjoi": "^6.0.2",
     "joi": "^17.4.0",
     "lodash": "^4.17.20",
     "merge-options": "^3.0.4",

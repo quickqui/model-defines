@@ -32,9 +32,13 @@ test("validate by schema", () => {
     name: "test",
     resource: "testResource",
     namespace: "test/namespace",
+    parameters:{
+      "testP":'testPValue'
+    }
   };
-  const re = s.validate(fun,  { abortEarly: false });
+
+  const re = s.validate(fun);
   const { error, value } = re;
-  expect(error).toBeUndefined();
+  expect(error).toBeNull();
   expect(value).toEqual(fun);
 });
