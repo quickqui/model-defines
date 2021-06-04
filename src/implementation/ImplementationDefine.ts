@@ -24,10 +24,10 @@ const define = {
   },
 
   validateAfterMerge(model: Model): ValidateError[] {
-    return new ImplementationValidator().validate(model);
+    return []
   },
   validateAfterWeave(model: Model): ValidateError[] {
-    return [];
+    return new ImplementationValidator().validate(model);
   },
   weavers: [new ImplementationExtendWeaver()]
 };
