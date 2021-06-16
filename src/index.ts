@@ -1,6 +1,5 @@
 export * from "./domain";
 export * from "./function";
-export * from "./implementation";
 export * from "./presentation";
 export * from "./exchange";
 export * from "./info";
@@ -19,7 +18,8 @@ export {
   REF_REST,
   REF_PROVIDED,
   parseRefWithProtocolInsure,
-  withoutAbstract,
+  withoutAbstract,WithParameters,WithNamespace,Extendable
   
 } from "./BaseDefine";
 export { parseExpr,evaluate,evaluateInObject,findInfos,getEventNames} from './Exprs'
+export {deepMerge,withNamespace,withBuildingContext}  from './Merge'
