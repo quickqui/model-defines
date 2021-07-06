@@ -10,6 +10,7 @@ export interface Presentation extends WithAnnotations, WithNamespace {
   propertyRules?: PropertyRule[];
   //NOTE 操作元素的配置放在这里。比如下来paging，下拉filter之类的元素的配置（存在？形式？） 可以放在这里。
   uiElementRules?: StringKeyObject;
+  //TODO 没有extends？
 }
 
 //NOTE: PropertyRule 在定义表现的时候是有用的，比如在狭窄的时候不显示xx属性。

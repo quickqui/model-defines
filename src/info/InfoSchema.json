@@ -14,7 +14,7 @@
         "default": {
           "type": "object"
         },
-        "events": {
+        "entities": {
           "items": {
             "type": "string"
           },

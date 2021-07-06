@@ -1,8 +1,5 @@
 import { WithAnnotations } from "../Annotation";
-import {
-  WithNamespace,
-  WithParameters,
-} from "../BaseDefine";
+import { WithNamespace, WithParameters } from "../BaseDefine";
 import { Model } from "@quick-qui/model-core";
 
 export function findInfo(
@@ -19,15 +16,44 @@ export function findInfo(
   }
 }
 
+export function findResource(
+  infoModel: InfoModel,
+  resourceName: string,
+  type: string = "resource"
+): [Info, string, string] | undefined {
+  const info = infoModel.infos.find(
+    (info) =>
+      info.type === type && (info.resources ?? []).includes(resourceName)
+  );
+  if (info) {
+    if (info.resources === undefined || info.entities === undefined)
+      return undefined;
+    const index = info.resources?.indexOf(resourceName);
+    if (index === undefined || index === -1) return undefined;
+    else {
+      return [info, info.resources?.[index], info.entities?.[index]];
+    }
+  } else return undefined;
+}
+
+export function getResources(infoModel: InfoModel): string[] {
+  return infoModel.infos
+    .map((info) => {
+      return info.resources ?? [];
+    })
+    .flat();
+}
+
 export interface Info extends WithAnnotations, WithNamespace, WithParameters {
   scope: string; // global? domain session config page local model user tenant
   type: string; // resource event
   resources?: string[];
-  events?: string[];
+  // events?: string[]; 不再有events，type=event（或其他）的，这个属性还是叫resource。
+  entities?: string[];
   default?: object;
   overwrite?: object;
 
-  //annotations: 
+  //annotations:
   // - implementation:
   // - - at: front\back
   // - - source: resolve/storage/rest/graphQl/fake,
