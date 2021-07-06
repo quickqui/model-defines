@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { functionWeavers } from "./FunctionWeavers";
-import { FunctionValidator, resourceRefEntity } from "./FunctionValidator";
+import { FunctionValidator, resourceRefCheck } from "./FunctionValidator";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
 
 const functionDefine = {
@@ -23,7 +23,7 @@ const functionDefine = {
     return new FunctionValidator().validate(model);
   },
   validateAfterWeave(model: Model): ValidateError[] {
-    return resourceRefEntity(model);
+    return resourceRefCheck(model);
   },
   weavers: functionWeavers,
 };

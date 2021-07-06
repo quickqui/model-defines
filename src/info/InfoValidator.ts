@@ -2,7 +2,8 @@ import { ModelValidator, Model, ValidateError } from "@quick-qui/model-core";
 import { withInfoModel, InfoModel } from "./InfoModel";
 import enjoi from "enjoi";
 import schema from "./InfoSchema.json";
-import { existEntity, WithDomainModel } from "../domain/DomainModel";
+import { WithDomainModel } from "../domain";
+import { existEntity } from "../domain/DomainModel";
 export class InfoValidator implements ModelValidator {
   validate(model: Model): ValidateError[] {
     return [
