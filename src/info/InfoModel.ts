@@ -20,14 +20,13 @@ export function findResource(
   infoModel: InfoModel,
   resourceName: string,
   type: string = "resource"
-): [Info, string, string] | undefined {
+): [Info, string, string | undefined] | undefined {
   const info = infoModel.infos.find(
     (info) =>
       info.type === type && (info.resources ?? []).includes(resourceName)
   );
   if (info) {
-    if (info.resources === undefined || info.entities === undefined)
-      return undefined;
+    if (info.resources === undefined) return undefined;
     const index = info.resources?.indexOf(resourceName);
     if (index === undefined || index === -1) return undefined;
     else {

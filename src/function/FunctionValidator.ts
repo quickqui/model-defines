@@ -32,6 +32,14 @@ export function resourceRefCheck(model: Model): ValidateError[] {
               `no resource find - expect=${fun.resource}`
             )
           );
+        else if (!resource[2])
+          re.push(
+            //TODO 这里可能应该是个warning，而不是一个error。
+            new ValidateError(
+              `functions/${fun.name}`,
+              `no entity find - expect=${fun.resource}`
+            )
+          );
       } else {
         re.push(
           new ValidateError(`functions/${fun.name}`, `no info model find`)
