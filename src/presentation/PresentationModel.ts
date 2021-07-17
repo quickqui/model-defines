@@ -1,16 +1,15 @@
-import { StringKeyObject, WithNamespace } from "../BaseDefine";
+import { Extendable, StringKeyObject, WithNamespace } from "../BaseDefine";
 import { WithAnnotations } from "../Annotation";
 
 export interface PresentationModel {
   presentations: Presentation[];
 }
 
-export interface Presentation extends WithAnnotations, WithNamespace {
+export interface Presentation extends WithAnnotations, WithNamespace ,Extendable{
   //NOTE presentations由他处以name引用，不管其他。（所以也没有类似resource这样的方法）
   propertyRules?: PropertyRule[];
   //NOTE 操作元素的配置放在这里。比如下来paging，下拉filter之类的元素的配置（存在？形式？） 可以放在这里。
   uiElementRules?: StringKeyObject;
-  //TODO 没有extends？
 }
 
 //NOTE: PropertyRule 在定义表现的时候是有用的，比如在狭窄的时候不显示xx属性。
@@ -23,4 +22,3 @@ export interface PropertyRule {
   rules?: string[]; //hidden, masked, enabled/disabled, fullWidth,Component
   order?: number;
 }
-

@@ -1,5 +1,6 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
+import PresentationExtendWeaver from "./PresentationExtendWeaver";
 import { PresentationValidator } from './PresentationValidator';
 
 const define = {
@@ -20,6 +21,6 @@ const define = {
   validateAfterWeave(model: Model): ValidateError[] {
     return [];
   },
-  weavers: []
+  weavers: [new PresentationExtendWeaver()]
 };
 export default define;

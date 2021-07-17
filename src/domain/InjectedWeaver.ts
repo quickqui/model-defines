@@ -1,8 +1,9 @@
 import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
-import { WithDomainModel, DomainModel, Entity } from "./DomainModel";
+import { WithDomainModel, DomainModel, Entity, Property } from "./DomainModel";
 import * as R from "ramda";
-import  _ from "lodash";
-import { getNameInsureCategory } from '../BaseDefine';
+import _ from "lodash";
+import { getNameInsureCategory } from "../BaseDefine";
+import { deepMerge, mergeByKey } from "../Merge";
 
 export class InjectedWeaver implements ModelWeaver {
   name = "inject";
@@ -24,12 +25,7 @@ function pushAll(
   );
   if (withInject) {
     const [newModel, log] = push(model, withInject);
-    return pushAll(
-      newModel,
-      _(logs)
-        .concat(log)
-        .value()
-    );
+    return pushAll(newModel, _(logs).concat(log).value());
   } else {
     return [model, logs];
   }
@@ -50,19 +46,20 @@ function push(
     );
     if (target) {
       //TODO 处理冲突，同名的property 需要一个合并策略。
-      entity.properties.forEach(_ => target.properties.push(_));
+      const newProperties = mergeByKey(target.properties, entity.properties);
+      target.properties = newProperties as Property[];
       return [
         {
           //! inject的情况，自身被删掉了，注入到inject对象中去了。
           entities: model.entities.filter(
             R.complement(R.propEq("name", entity.name))
           ),
-          enums: model.enums
+          enums: model.enums,
         },
         new ModelWeaveLog(
           `entities/${target.name}`,
-          `Injected - form entities/${entity.name} to entities/${target.name}`
-        )
+          `Injected - from entities/${entity.name} to entities/${target.name}`
+        ),
       ];
     } else {
       throw new Error(`no such entity - ${target}`);
