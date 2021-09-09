@@ -22,4 +22,4 @@ export {
   
 } from "./BaseDefine";
 export { parseExpr,evaluate,evaluateInObject,findInfos,getEventNames} from './Exprs'
-export {deepMerge,withNamespace,withBuildingContext}  from './Merge'
+export {deepMerge,mergeInPath,withNamespace,withBuildingContext}  from './Merge'

@@ -1,7 +1,7 @@
 import { Model, ValidateError } from "@quick-qui/model-core";
 import { pageWeavers } from "./PageWeaver";
 import { WithPresentationModel } from "./PageModel";
-import { deepMerge, withNamespace, withBuildingContext } from "../Merge";
+import { mergeInPath } from "../Merge";
 import { PageValidator, pageFunctionExistsValidator } from "./PageValidator";
 
 const define = {
@@ -13,11 +13,7 @@ const define = {
     piece: any,
     buildingContext: any
   ): Model {
-    return deepMerge(model, {
-      pageModel: {
-        pages:  withBuildingContext( withNamespace(piece.pages ?? [], buildingContext),buildingContext)
-      }
-    });
+    return mergeInPath(model,['pageModel','pages'],piece.pages??[],buildingContext)
   },
 
   validateAfterMerge(model: Model): ValidateError[] {

@@ -1,12 +1,32 @@
 import mergeOptions from "merge-options";
 import _ from "lodash";
 import { StringKeyObject } from "./BaseDefine";
+import { Model } from "@quick-qui/model-core";
 
 export function deepMerge<T>(a: T, b: any): T {
   return mergeOptions.call({ concatArrays: true }, a, b) as T;
 }
 
-function arrayToMap(array: object[], key: string): StringKeyObject {
+export function mergeInPath(
+  model: Model,
+  path: string[],
+  objs: any,
+  buildingContext: any
+): Model {
+  return deepMerge(
+    model,
+    _.set(
+      {},
+      path,
+      withBuildingContext(withNamespace(objs, buildingContext), buildingContext)
+    )
+  );
+}
+
+export function arrayToMap(
+  array: object[],
+  key: string = "name"
+): StringKeyObject {
   const pairs = array.map((a) => [a[key], a]);
   return _.fromPairs(pairs);
 }
@@ -15,8 +35,8 @@ export function mergeByKey(
   b: object[] | undefined,
   key: string = "name"
 ): object[] {
-  const obj = arrayToMap(a??[], key);
-  const source = arrayToMap(b??[], key);
+  const obj = arrayToMap(a ?? [], key);
+  const source = arrayToMap(b ?? [], key);
   return _.toPairs(deepMerge(obj, source)).map((pair) => pair[1]);
 }
 
