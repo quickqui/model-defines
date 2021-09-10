@@ -1,5 +1,10 @@
-import { ModelWeaver, Model, ModelWeaveLog } from "@quick-qui/model-core";
-import { WithDomainModel, DomainModel, Entity, Property } from "./DomainModel";
+import { ModelWeaver, Model, WeaveLog } from "@quick-qui/model-core";
+import {
+  DomainModel,
+  Entity,
+  Property,
+  withDomainModel,
+} from "./DomainModel";
 import * as R from "ramda";
 import _ from "lodash";
 import { getNameInsureCategory } from "../BaseDefine";
@@ -7,19 +12,20 @@ import { deepMerge, mergeByKey } from "../Merge";
 
 export class InjectedWeaver implements ModelWeaver {
   name = "inject";
-  weave(model: Model): [Model, ModelWeaveLog[]] {
-    const [domainModel, logs] = pushAll(
-      (model as Model & WithDomainModel).domainModel!,
-      []
-    );
+  weave(model: Model): [Model, WeaveLog[]] {
+    const withDomain = withDomainModel(model);
+    if (!withDomain) {
+      return [model, []];
+    }
+    const [domainModel, logs] = pushAll(withDomain.domainModel!, []);
     return [{ ...model, domainModel }, logs];
   }
 }
 
 function pushAll(
   model: DomainModel,
-  logs: ModelWeaveLog[]
-): [DomainModel, ModelWeaveLog[]] {
+  logs: WeaveLog[]
+): [DomainModel, WeaveLog[]] {
   const withInject = model.entities.find(
     R.propSatisfies(R.complement(R.isNil), "inject")
   );
@@ -35,10 +41,7 @@ function getEntity(model: DomainModel, name: string): Entity | undefined {
   return model.entities.find(R.propEq("name", name));
 }
 
-function push(
-  model: DomainModel,
-  entity: Entity
-): [DomainModel, ModelWeaveLog] {
+function push(model: DomainModel, entity: Entity): [DomainModel, WeaveLog] {
   if (entity.inject) {
     const target = getEntity(
       model,
@@ -56,7 +59,7 @@ function push(
           ),
           enums: model.enums,
         },
-        new ModelWeaveLog(
+        new WeaveLog(
           `entities/${target.name}`,
           `Injected - from entities/${entity.name} to entities/${target.name}`
         ),

@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { ModelWeaveLog, ValidateError } from "@quick-qui/model-core";
+import { WeaveLog, ValidateError } from "@quick-qui/model-core";
 import { Annotation } from "./Annotation";
 
 //IDEA 需要一个类似于pipe或者前置处理的装置来预处理类似于“简写”之类的需求。

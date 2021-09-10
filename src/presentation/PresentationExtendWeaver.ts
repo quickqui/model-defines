@@ -1,8 +1,8 @@
-import { Model, ModelWeaveLog, ModelWeaver } from "@quick-qui/model-core";
+import { Model, WeaveLog, ModelWeaver } from "@quick-qui/model-core";
 import _ from "lodash";
 import { getNameInsureCategory } from "../BaseDefine";
 import { mergeByKey } from "../Merge";
-import { WithPresentationModel } from "./PageModel";
+import { withPresentationModel } from "./PageModel";
 import {
   Presentation,
   PresentationModel,
@@ -11,43 +11,46 @@ import {
 
 export default class PresentationExtendWeaver implements ModelWeaver {
   name = "presentationExtend";
-  weave(model: Model): [Model, ModelWeaveLog[]] {
-    const logs: ModelWeaveLog[] = [];
-    const m = model as Model & WithPresentationModel;
-    m.presentationModel.presentations.forEach((presentation) => {
-      if (presentation.extend) {
-        const extendTargetName = getNameInsureCategory(
-          presentation.extend,
-          "presentations"
-        );
-        const extendTarget = getPresentation(
-          m.presentationModel,
-          extendTargetName
-        );
-        if (!extendTarget) {
-          logs.push(
-            new ModelWeaveLog(
-              `presentations/${presentation.name}`,
-              `no extend presentation find, expected - ${extendTargetName}`,
-              true
-            )
+  weave(model: Model): [Model, WeaveLog[]] {
+    const logs: WeaveLog[] = [];
+    const m = withPresentationModel(model);
+    if (m) {
+      m.presentationModel.presentations.forEach((presentation) => {
+        if (presentation.extend) {
+          const extendTargetName = getNameInsureCategory(
+            presentation.extend,
+            "presentations"
           );
-        } else {
-          const index = _(m.presentationModel.presentations).findIndex(
-            (p) => p.name === presentation.name
+          const extendTarget = getPresentation(
+            m.presentationModel,
+            extendTargetName
           );
-          const newP = doExtend(presentation, extendTarget);
-          m.presentationModel.presentations[index] = newP;
-          logs.push(
-            new ModelWeaveLog(
-              `presentations/${presentation.name}`,
-              `extend presentation, base - ${extendTargetName}, sub - ${presentation.name}`
-            )
-          );
+          if (!extendTarget) {
+            logs.push(
+              new WeaveLog(
+                `presentations/${presentation.name}`,
+                `no extend presentation find, expected - ${extendTargetName}`,
+                true
+              )
+            );
+          } else {
+            const index = _(m.presentationModel.presentations).findIndex(
+              (p) => p.name === presentation.name
+            );
+            const newP = doExtend(presentation, extendTarget);
+            m.presentationModel.presentations[index] = newP;
+            logs.push(
+              new WeaveLog(
+                `presentations/${presentation.name}`,
+                `extend presentation, base - ${extendTargetName}, sub - ${presentation.name}`
+              )
+            );
+          }
         }
-      }
-    });
-    return [m, logs];
+      });
+      return [m, logs];
+    }
+    return [model, []];
   }
 }
 function doExtend(sub: Presentation, base: Presentation): Presentation {

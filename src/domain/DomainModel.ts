@@ -1,4 +1,4 @@
-import { ModelWeaveLog, Model } from "@quick-qui/model-core";
+import { WeaveLog, Model } from "@quick-qui/model-core";
 import { WithAnnotations } from "../Annotation";
 import _ = require("lodash");
 import { Inject, StringKeyObject, WithNamespace } from "../BaseDefine";
@@ -57,10 +57,10 @@ interface Relation {
 
 export function forEachEntity(
   model: Model & WithDomainModel,
-  fun: (entity: Entity) => [Entity, ModelWeaveLog[]]
-): [Model, ModelWeaveLog[]] {
-  const entities = model.domainModel!.entities;
-  let logs: ModelWeaveLog[] = [];
+  fun: (entity: Entity) => [Entity, WeaveLog[]]
+): [Model, WeaveLog[]] {
+  const entities = model.domainModel?.entities ?? [];
+  let logs: WeaveLog[] = [];
   let newEntities: Entity[] = [];
   entities.forEach((entity) => {
     let [en, log] = fun(entity);
@@ -82,13 +82,13 @@ export function eachEntity<T>(
   model: Model & WithDomainModel,
   fun: (entity: Entity) => T
 ): T[] {
-  return model.domainModel!.entities.map(fun);
+  return (model.domainModel?.entities ?? []).map(fun);
 }
 export function getEntity(
   model: Model & WithDomainModel,
   name: string
 ): Entity | undefined {
-  return model.domainModel!.entities.find((entity) => {
+  return (model.domainModel?.entities??[]).find((entity) => {
     return entity.name === name;
   });
 }

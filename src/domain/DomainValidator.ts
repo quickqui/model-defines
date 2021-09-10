@@ -1,6 +1,5 @@
 import { ModelValidator, ValidateError, Model } from "@quick-qui/model-core";
 import {
-  WithDomainModel,
   existEntity,
   DomainModel,
   withDomainModel
@@ -21,8 +20,8 @@ export class DomainValidator implements ModelValidator {
 }
 function injectValidate(model: Model): ValidateError[] {
   const re: ValidateError[] = [];
-  const m = model as Model & WithDomainModel;
-  if (m.domainModel) {
+  const m = withDomainModel(model);
+  if (m?.domainModel) {
     m.domainModel.entities.forEach(entity => {
       if (entity.inject) {
         try {

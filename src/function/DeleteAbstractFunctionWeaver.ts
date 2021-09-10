@@ -1,4 +1,4 @@
-import { ModelWeaver, ModelWeaveLog, Model } from "@quick-qui/model-core";
+import { ModelWeaver, WeaveLog, Model } from "@quick-qui/model-core";
 import { WithFunctionModel, withFunctionModel } from "./FunctionModel";
 
 
@@ -7,7 +7,7 @@ export const deleteAbstractFunctionsOrder = 10000
 export class DeleteAbstractFunctionWeaver implements ModelWeaver {
          name = "deleteAbstractFunctions";
          order = deleteAbstractFunctionsOrder;
-         weave(model: Model): [Model, ModelWeaveLog[]] {
+         weave(model: Model): [Model, WeaveLog[]] {
            const m = withFunctionModel(model)!
            const abstracts = m.functionModel?.functions.filter(
              fun => fun.abstract
@@ -20,7 +20,7 @@ export class DeleteAbstractFunctionWeaver implements ModelWeaver {
            return [
              m,
              abstracts.map(fun => {
-               return new ModelWeaveLog(
+               return new WeaveLog(
                  `functions/${fun.name}`,
                  `abstract function deleted - ${fun.name}`
                );

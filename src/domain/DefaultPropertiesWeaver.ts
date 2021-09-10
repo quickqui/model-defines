@@ -1,19 +1,23 @@
-import { Entity, WithDomainModel } from "./DomainModel";
+import { Entity, withDomainModel } from "./DomainModel";
 import _ from "lodash";
 
 import { forEachEntity } from "./DomainModel";
 
-import { ModelWeaveLog, ModelWeaver, Model } from "@quick-qui/model-core/";
+import { WeaveLog, ModelWeaver, Model } from "@quick-qui/model-core/";
 
 //TODO 这个weaver不一定是domain基础级的。不是数据库就一定要这个。
 export class DefaultPropertiesWeaver implements ModelWeaver {
   name = "defaultProperties";
-  weave(model: Model): [Model, ModelWeaveLog[]] {
-    return forEachEntity(model as Model & WithDomainModel, defaultProperties);
+  weave(model: Model): [Model, WeaveLog[]] {
+    const withDomain = withDomainModel(model);
+    if(!withDomain){
+      return [model, []]
+    }
+    return forEachEntity(withDomain, defaultProperties);
   }
 }
 
-function defaultProperties(entity: Entity): [Entity, ModelWeaveLog[]] {
+function defaultProperties(entity: Entity): [Entity, WeaveLog[]] {
   const idPro = entity.properties.find(
     prop => prop.name.toLowerCase() === "id"
   );
@@ -27,7 +31,7 @@ function defaultProperties(entity: Entity): [Entity, ModelWeaveLog[]] {
         ])
       }),
       [
-        new ModelWeaveLog(
+        new WeaveLog(
           `entities/${entity.name}`,
           `Added default properties - 'id'`
         )

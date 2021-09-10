@@ -5,6 +5,9 @@ test("extend no extend", () => {
     presentationModel: {
       presentations: [{ name: "aE",propertyRules:[{property:'aP',rules:['hidden']}] }],
     },
+    pageModel: {
+      pages:[]
+    }
   };
   const weaver = new PresentationExtendWeaver();
   const re = weaver.weave(model);
@@ -16,9 +19,16 @@ test("extend simple", () => {
   const model = {
     presentationModel: {
       presentations: [
-        { name: "aE", extend: 'bE',propertyRules: [{ property: "aP", rules: ["hidden"] }] },
+        {
+          name: "aE",
+          extend: "bE",
+          propertyRules: [{ property: "aP", rules: ["hidden"] }],
+        },
         { name: "bE", propertyRules: [{ property: "aP", rules: ["id"] }] },
       ],
+    },
+    pageModel: {
+      pages: [],
     },
   };
   const weaver = new PresentationExtendWeaver();
@@ -29,12 +39,15 @@ test("extend simple", () => {
         {
           name: "aE",
           extend: "bE",
-          propertyRules: [{ property: "aP", rules: ['id','hidden'] }],
-          abstract:false,
-          annotations:{}
+          propertyRules: [{ property: "aP", rules: ["id", "hidden"] }],
+          abstract: false,
+          annotations: {},
         },
         { name: "bE", propertyRules: [{ property: "aP", rules: ["id"] }] },
       ],
+    },
+    pageModel: {
+      pages: [],
     },
   };
   expect(re[0]).toEqual(exModel);
