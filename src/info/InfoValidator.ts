@@ -16,7 +16,6 @@ export function resourceRefEntity(model: Model): ValidateError[] {
   const re: ValidateError[] = [];
 
   withInfoModel(model)?.infoModel.infos.forEach((info) => {
-    const re: ValidateError[] = [];
     (info.entities ?? []).forEach((entity) => {
       if (!existEntity(model as WithDomainModel, entity))
         re.push(
